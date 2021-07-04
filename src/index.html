@@ -79,10 +79,10 @@
 							<!-- If field type is select -->
 							<template x-if="field.type === 'select'">
 								<div>
-									<label x-text="field.name" class="label"></label>
+									<label x-text="field.name" class="label" :for="field.name"></label>
 									<div class="control">
 										<div class="select is-fullwidth">
-											<select>
+											<select :id="field.name">
 												<!-- Loop over select options (Loop 3) -->
 												<template x-for="option in field.value">
 													<option x-text="option" :value="option"></option>
@@ -95,10 +95,10 @@
 							<!-- If field type is not select -->
 							<template x-if="field.type !== 'select'">
 								<div>
-									<label x-text="field.name" class="label"></label>
+									<label x-text="field.name" :for="field.name" class="label"></label>
 									<div class="control">
-										<input class="input" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
-											:value="field.value" :required="field.required ? true : false">
+										<input :id="field.name" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
+											:value="field.value" :required="field.required ? true : false" class="input">
 									</div>
 								</div>
 							</template>
