@@ -20,6 +20,7 @@
     transform-origin: top;
     transition: all 0.3s ease-out;
     pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23) !important;
   }
 
   .navbar-menu.is-active {
