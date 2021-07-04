@@ -66,12 +66,20 @@
 				<div class="field">
 					<label class="label">Date</label>
 					<div class="control">
-						<input x-init="$el.value = new Date().toISOString().substr(0, 10)" class="input" type="date">
+						<input x-init="$el.value = new Date().toISOString().substr(0, 10)" type="date" class="input">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Invoice Number</label>
+					<div class="control">
+						<input x-init="$el.value = localStorage.getItem('invoiceData') || 0"
+							x-on:change="$store.customMethods.updateInvoiceNumber"
+							x-on:keyup="$store.customMethods.updateInvoiceNumber" type="number" class="input">
 					</div>
 				</div>
 			</section>
 			<!-- Top Section -->
-			<!-- Sections (Loop 1) -->
+			<!-- Field Sections (Loop 1) -->
 			<template x-for="section in Object.keys(fields)">
 				<section class="my-4">
 					<h1 x-text="section.replace(/([a-z])([A-Z])/g, `$1 $2`)" class="is-size-5 has-text-centered"></h1>
@@ -89,6 +97,7 @@
 												<template x-for="option in field.value">
 													<option x-text="option" :value="option"></option>
 												</template>
+												<!-- Loop over select options (Loop 3) -->
 											</select>
 										</div>
 									</div>
@@ -106,12 +115,14 @@
 							</template>
 						</div>
 					</template>
+					<!-- Fields (Loop 2) -->
 				</section>
 			</template>
+			<!-- Field Sections -->
 			<!-- Submit and Reset -->
 			<div class="field is-grouped is-justify-content-center my-5">
 				<div class="control has-text-centered">
-					<button type="submit" class="button is-rounded is-info">
+					<button type="submit" x-on:click="$el.classList.toggle('is-loading')" class="button is-rounded is-info">
 						<span class="icon is-big">
 							<span class="material-icons">picture_as_pdf</span>
 						</span>
