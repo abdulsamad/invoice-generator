@@ -1,0 +1,13 @@
+{
+  "name": "invoice-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Abdul Samad",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.35.1",
+    "typescript": "^4.3.5"
+  }
+}
