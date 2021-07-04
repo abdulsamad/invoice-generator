@@ -5,6 +5,10 @@
   "author": "Abdul Samad",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "sass": "^1.35.1",
