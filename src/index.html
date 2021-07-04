@@ -58,8 +58,17 @@
 	<!-- Navigation -->
 
 	<div class="container px-5">
+
 		<!-- Forms -->
 		<form x-data="$store.invoiceData">
+			<section class="my-4">
+				<div class="field">
+					<label class="label">Date</label>
+					<div class="control">
+						<input x-init="$el.value = new Date().toISOString().substr(0, 10)" class="input" type="date">
+					</div>
+				</div>
+			</section>
 			<section class="my-4">
 				<h1 class="is-size-5 has-text-centered">Vehicle Details</h1>
 				<template x-for="field in fields.VehicleDetails">
@@ -116,6 +125,7 @@
 			</div>
 		</section>
 		<!-- Action Buttons -->
+
 	</div>
 
 	<!-- Footer -->
