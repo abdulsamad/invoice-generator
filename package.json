@@ -8,7 +8,8 @@
   "scripts": {
     "prestart": "rm -rf .cache",
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "prebuild": "rm -rf dist && rm -rf .cache",
+    "build": "parcel build src/index.html --no-content-hash --no-source-maps --no-minify"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
