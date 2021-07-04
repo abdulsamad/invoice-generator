@@ -60,11 +60,30 @@
 	<div class="container p-5">
 		<!-- Forms -->
 		<section x-data="$store.invoiceData">
+			<h1 class="is-size-5 has-text-centered mb-4">Vehicle Details</h1>
 			<template x-for="field in fields.VehicleDetails">
 				<div class="field">
 					<label x-text="field" class="label"></label>
 					<div class="control">
-						<input class="input" type="text" placeholder="Text input">
+						<input class="input" type="text" :placeholder="field">
+					</div>
+				</div>
+			</template>
+			<h1 class="is-size-5 has-text-centered my-4">Customer Details</h1>
+			<template x-for="field in fields.CustomerDetails">
+				<div class="field">
+					<label x-text="field" class="label"></label>
+					<div class="control">
+						<input class="input" type="text" :placeholder="field">
+					</div>
+				</div>
+			</template>
+			<h1 class="is-size-5 has-text-centered my-4">Payment Details</h1>
+			<template x-for="field in fields.PaymentDetails">
+				<div class="field">
+					<label x-text="field" class="label"></label>
+					<div class="control">
+						<input class="input" type="text" :placeholder="field">
 					</div>
 				</div>
 			</template>

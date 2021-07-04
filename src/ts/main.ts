@@ -1,10 +1,10 @@
 import Alpine from 'alpinejs';
 
+import invoiceData from './invoiceData';
+
 // Alpine Store (Global State)
 document.addEventListener('alpine:init', () => {
-  Alpine.store('invoiceData', {
-    fields: ['Name', 'Reg No', 'Model No', 'Chasis No', 'Engine No', 'Color'],
-  });
+  Alpine.store('invoiceData', invoiceData);
 });
 
 // Start Alpine
