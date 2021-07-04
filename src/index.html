@@ -82,7 +82,7 @@
 			<!-- Field Sections (Loop 1) -->
 			<template x-for="section in Object.keys(fields)">
 				<section class="my-4">
-					<h1 x-text="section.replace(/([a-z])([A-Z])/g, `$1 $2`)" class="is-size-5 has-text-centered"></h1>
+					<h1 x-text="section.replace(/([a-z])([A-Z])/g, `$1 $2`)" class="is-size-5 has-text-centered mb-3"></h1>
 					<!-- Fields (Loop 2) -->
 					<template x-for="field in fields[section]">
 						<div class="field">
