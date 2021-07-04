@@ -7,8 +7,8 @@
   "private": true,
   "scripts": {
     "prestart": "rm -rf .cache",
-    "start": "parcel src/index.html src/receipt.html",
-    "prebuild": "rm -rf dist && rm -rf .cache",
+    "start": "parcel src/index.html src/receipt.html -p 3000",
+    "prebuild": "rm -rf dist",
     "build": "parcel build src/index.html src/receipt.html --no-content-hash --no-source-maps --no-minify"
   },
   "devDependencies": {
