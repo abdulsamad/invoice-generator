@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ZipDrive - Invoice Generator</title>
+	<title>Invoice Generator</title>
 	<meta name="theme-color" content="#4CAF50">
 	<link rel="apple-touch-icon" sizes="57x57" href="./assets/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="./assets/apple-icon-60x60.png">
@@ -31,11 +31,10 @@
 
 <body>
 	<!-- Navigation -->
-
 	<nav x-data="{ open: false }" class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
 			<a class="navbar-item" href="/index.html">
-				ZipDrive - Invoice Generator
+				Invoice Generator
 			</a>
 			<button x-on:click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
 				aria-label="menu" aria-expanded="false">
@@ -58,7 +57,6 @@
 	<!-- Navigation -->
 
 	<div class="container px-5">
-
 		<!-- Forms -->
 		<form x-data="$store.invoiceData">
 			<section class="my-4">
@@ -69,39 +67,19 @@
 					</div>
 				</div>
 			</section>
-			<section class="my-4">
-				<h1 class="is-size-5 has-text-centered">Vehicle Details</h1>
-				<template x-for="field in fields.VehicleDetails">
-					<div class="field">
-						<label x-text="field" class="label"></label>
-						<div class="control">
-							<input class="input" type="text" :placeholder="field">
+			<template x-for="section in Object.keys(fields)">
+				<section class="my-4">
+					<h1 x-text="section" class="is-size-5 has-text-centered"></h1>
+					<template x-for="field in fields[section]">
+						<div class="field">
+							<label x-text="field" class="label"></label>
+							<div class="control">
+								<input class="input" type="text" :placeholder="field">
+							</div>
 						</div>
-					</div>
-				</template>
-			</section>
-			<section class="my-4">
-				<h1 class="is-size-5 has-text-centered">Customer Details</h1>
-				<template x-for="field in fields.CustomerDetails">
-					<div class="field">
-						<label x-text="field" class="label"></label>
-						<div class="control">
-							<input class="input" type="text" :placeholder="field">
-						</div>
-					</div>
-				</template>
-			</section>
-			<section class="my-4">
-				<h1 class="is-size-5 has-text-centered">Payment Details</h1>
-				<template x-for="field in fields.PaymentDetails">
-					<div class="field">
-						<label x-text="field" class="label"></label>
-						<div class="control">
-							<input class="input" type="text" :placeholder="field">
-						</div>
-					</div>
-				</template>
-			</section>
+					</template>
+				</section>
+			</template>
 		</form>
 		<!-- Forms -->
 
@@ -125,7 +103,6 @@
 			</div>
 		</section>
 		<!-- Action Buttons -->
-
 	</div>
 
 	<!-- Footer -->
