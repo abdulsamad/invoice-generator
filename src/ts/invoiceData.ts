@@ -26,11 +26,11 @@ const details: IDetails = {
         placeholder: 'Enter vehicle registration number',
       },
       {
-        name: 'Chassis No',
+        name: 'Chassis Number',
         placeholder: 'Enter vehicle chassis number',
       },
       {
-        name: 'Engine No',
+        name: 'Engine Number',
         placeholder: 'Enter vehicle engine number',
       },
       {
@@ -52,14 +52,14 @@ const details: IDetails = {
         placeholder: 'Enter customer LIC number',
       },
       {
-        name: 'Contact No',
+        name: 'Contact Number',
         type: 'number',
         placeholder: 'Enter customer contact number',
       },
     ],
     PaymentDetails: [
       {
-        name: 'Mode',
+        name: 'Mode of Payment',
         type: 'select',
         placeholder: 'Enter mode of payment',
         required: true,
