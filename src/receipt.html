@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Receipt Generator</title>
+	<meta name="theme-color" content="#4CAF50">
+	<link rel="apple-touch-icon" sizes="57x57" href="./assets/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="./assets/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="./assets/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="./assets/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="./assets/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="./assets/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="./assets/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="./assets/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="./assets/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+	<link rel="manifest" href="./manifest.webmanifest">
+	<link rel="stylesheet" href="./scss/style.scss">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+	<!-- Navigation -->
+	<nav x-data="{ open: false }" class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
+		<div class="container">
+			<div class="navbar-brand">
+				<a class="navbar-item is-size-4" href="/index.html">
+					Receipt Generator
+				</a>
+				<button x-on:click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
+					aria-label="menu" aria-expanded="false">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div :class="{ 'is-active' : open , '' : !open}" class="navbar-menu">
+				<div class="navbar-end">
+					<a class="navbar-item" href="/index.html">
+						Home
+					</a>
+					<a class="navbar-item is-active" href="/receipt.html">
+						Receipt
+					</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- Navigation -->
+
+
+	<div class="container px-5">
+		<h1 class="is-size-2 has-text-centered my-5">Receipt Generator is coming soon! 🥳</h1>
+		<!-- Action Buttons -->
+		<section class="field is-grouped is-justify-content-center my-5 is-hidden">
+			<div class="control">
+				<button class="button is-rounded is-primary">
+					<span class="icon is-small">
+						<i class="material-icons">print</i>
+					</span>
+					<span>Print</span>
+				</button>
+			</div>
+			<div class="control">
+				<button class="button is-link is-rounded">
+					<span class="icon is-small">
+						<i class="material-icons">file_download</i>
+					</span>
+					<span>Download</span>
+				</button>
+			</div>
+		</section>
+		<!-- Action Buttons -->
+	</div>
+
+	<!-- Footer -->
+	<footer class="has-text-centered py-5">
+		&copy; 2021 Invoice Generator by AbdulSamad
+	</footer>
+	<!-- Footer -->
+</body>
+
+</html>
