@@ -8,7 +8,7 @@ document.addEventListener('alpine:init', () => {
   Alpine.store('customMethods', {
     updateInvoiceNumber: (ev: Event) => {
       const elem = ev.target as HTMLInputElement;
-      localStorage.setItem('invoiceData', elem.value);
+      localStorage.setItem('invoiceNumber', elem.value);
     },
   });
 });
