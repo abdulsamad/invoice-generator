@@ -2,4 +2,9 @@
 	$family-primary: "Open Sans",
 	$primary: #4CAF50,
 	$success: #8BC34A,
+	$shadow:  #{0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)},
+	$navbar-box-shadow-size: #{0 3px 6px, 0 3px 6px},
+	$navbar-box-shadow-color: #{rgba(0,0,0,0.16), rgba(0,0,0,0.23)},
+	$navbar-bottom-box-shadow-size: 0 3px 6px,
+	$navbar-dropdown-boxed-shadow: 	#{0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)}
 );
