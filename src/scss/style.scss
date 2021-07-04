@@ -8,3 +8,23 @@
 	$navbar-bottom-box-shadow-size: 0 3px 6px,
 	$navbar-dropdown-boxed-shadow: 	#{0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)}
 );
+
+@include bulma.until(bulma.$desktop) {
+  .navbar-menu {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: scaleY(0.3);
+    transform-origin: top;
+    transition: all 0.3s ease-out;
+    pointer-events: none;
+  }
+
+  .navbar-menu.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
