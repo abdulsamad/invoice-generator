@@ -69,16 +69,39 @@
 					</div>
 				</div>
 			</section>
+			<!-- Sections (Loop 1) -->
 			<template x-for="section in Object.keys(fields)">
 				<section class="my-4">
 					<h1 x-text="section.replace(/([a-z])([A-Z])/g, `$1 $2`)" class="is-size-5 has-text-centered"></h1>
+					<!-- Fields (Loop 2) -->
 					<template x-for="field in fields[section]">
 						<div class="field">
-							<label x-text="field.name" class="label"></label>
-							<div class="control">
-								<input class="input" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
-									:value="field.value" :required="field.required ? true : false">
-							</div>
+							<!-- If field type is select -->
+							<template x-if="field.type === 'select'">
+								<div>
+									<label x-text="field.name" class="label"></label>
+									<div class="control">
+										<div class="select is-fullwidth">
+											<select>
+												<!-- Loop over select options (Loop 3) -->
+												<template x-for="option in field.value">
+													<option x-text="option" :value="option"></option>
+												</template>
+											</select>
+										</div>
+									</div>
+								</div>
+							</template>
+							<!-- If field type is not select -->
+							<template x-if="field.type !== 'select'">
+								<div>
+									<label x-text="field.name" class="label"></label>
+									<div class="control">
+										<input class="input" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
+											:value="field.value" :required="field.required ? true : false">
+									</div>
+								</div>
+							</template>
 						</div>
 					</template>
 				</section>
