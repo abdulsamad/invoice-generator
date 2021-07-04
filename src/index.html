@@ -49,15 +49,18 @@
 				<a class="navbar-item" href="/index.html">
 					Home
 				</a>
+				<a class="navbar-item" href="#">
+					Receipt
+				</a>
 			</div>
 		</div>
 	</nav>
 	<!-- Navigation -->
 
-	<!-- Form -->
 	<div class="container p-5">
+		<!-- Forms -->
 		<section x-data="$store.invoiceData">
-			<template x-for="field in fields">
+			<template x-for="field in fields.VehicleDetails">
 				<div class="field">
 					<label x-text="field" class="label"></label>
 					<div class="control">
@@ -66,10 +69,10 @@
 				</div>
 			</template>
 		</section>
-		<!-- Form -->
+		<!-- Forms -->
 
 		<!-- Action Buttons -->
-		<div class="field is-grouped is-justify-content-center my-5">
+		<section class="field is-grouped is-justify-content-center my-5">
 			<div class="control">
 				<button class="button is-rounded is-primary">
 					<span class="icon is-small">
@@ -86,9 +89,15 @@
 					<span>Download</span>
 				</button>
 			</div>
-		</div>
+		</section>
 		<!-- Action Buttons -->
 	</div>
+
+	<!-- Footer -->
+	<footer class="has-text-centered">
+		&copy; 2021 Invoice Generator by AbdulSamad
+	</footer>
+	<!-- Footer -->
 </body>
 
 </html>
