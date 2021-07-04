@@ -57,37 +57,43 @@
 	</nav>
 	<!-- Navigation -->
 
-	<div class="container p-5">
+	<div class="container px-5">
 		<!-- Forms -->
-		<section x-data="$store.invoiceData">
-			<h1 class="is-size-5 has-text-centered mb-4">Vehicle Details</h1>
-			<template x-for="field in fields.VehicleDetails">
-				<div class="field">
-					<label x-text="field" class="label"></label>
-					<div class="control">
-						<input class="input" type="text" :placeholder="field">
+		<form x-data="$store.invoiceData">
+			<section class="my-4">
+				<h1 class="is-size-5 has-text-centered">Vehicle Details</h1>
+				<template x-for="field in fields.VehicleDetails">
+					<div class="field">
+						<label x-text="field" class="label"></label>
+						<div class="control">
+							<input class="input" type="text" :placeholder="field">
+						</div>
 					</div>
-				</div>
-			</template>
-			<h1 class="is-size-5 has-text-centered my-4">Customer Details</h1>
-			<template x-for="field in fields.CustomerDetails">
-				<div class="field">
-					<label x-text="field" class="label"></label>
-					<div class="control">
-						<input class="input" type="text" :placeholder="field">
+				</template>
+			</section>
+			<section class="my-4">
+				<h1 class="is-size-5 has-text-centered">Customer Details</h1>
+				<template x-for="field in fields.CustomerDetails">
+					<div class="field">
+						<label x-text="field" class="label"></label>
+						<div class="control">
+							<input class="input" type="text" :placeholder="field">
+						</div>
 					</div>
-				</div>
-			</template>
-			<h1 class="is-size-5 has-text-centered my-4">Payment Details</h1>
-			<template x-for="field in fields.PaymentDetails">
-				<div class="field">
-					<label x-text="field" class="label"></label>
-					<div class="control">
-						<input class="input" type="text" :placeholder="field">
+				</template>
+			</section>
+			<section class="my-4">
+				<h1 class="is-size-5 has-text-centered">Payment Details</h1>
+				<template x-for="field in fields.PaymentDetails">
+					<div class="field">
+						<label x-text="field" class="label"></label>
+						<div class="control">
+							<input class="input" type="text" :placeholder="field">
+						</div>
 					</div>
-				</div>
-			</template>
-		</section>
+				</template>
+			</section>
+		</form>
 		<!-- Forms -->
 
 		<!-- Action Buttons -->
