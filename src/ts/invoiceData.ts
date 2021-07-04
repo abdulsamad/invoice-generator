@@ -48,8 +48,8 @@ const details: IDetails = {
         placeholder: 'Enter customer address',
       },
       {
-        name: 'LIC No',
-        placeholder: 'Enter customer LIC number',
+        name: 'Insurance No',
+        placeholder: 'Enter customer insurance number',
       },
       {
         name: 'Contact Number',
