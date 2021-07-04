@@ -32,25 +32,27 @@
 <body>
 	<!-- Navigation -->
 	<nav x-data="{ open: false }" class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
-		<div class="navbar-brand">
-			<a class="navbar-item" href="/index.html">
-				Invoice Generator
-			</a>
-			<button x-on:click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
-				aria-label="menu" aria-expanded="false">
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-			</button>
-		</div>
-		<div :class="{ 'is-active' : open , '' : !open}" class="navbar-menu">
-			<div class="navbar-end">
-				<a class="navbar-item" href="/index.html">
-					Home
+		<div class="container px-5">
+			<div class="navbar-brand">
+				<a class="navbar-item is-size-4" href="/index.html">
+					Invoice Generator
 				</a>
-				<a class="navbar-item" href="#">
-					Receipt
-				</a>
+				<button x-on:click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
+					aria-label="menu" aria-expanded="false">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div :class="{ 'is-active' : open , '' : !open}" class="navbar-menu">
+				<div class="navbar-end">
+					<a class="navbar-item" href="/index.html">
+						Home
+					</a>
+					<a class="navbar-item" href="#">
+						Receipt
+					</a>
+				</div>
 			</div>
 		</div>
 	</nav>
@@ -58,7 +60,7 @@
 
 	<div class="container px-5">
 		<!-- Forms -->
-		<form x-data="$store.invoiceData">
+		<form x-on:submit.prevent="(data) => console.log(data)" x-data="$store.invoiceData" class="my-5">
 			<section class="my-4">
 				<div class="field">
 					<label class="label">Date</label>
@@ -69,22 +71,41 @@
 			</section>
 			<template x-for="section in Object.keys(fields)">
 				<section class="my-4">
-					<h1 x-text="section" class="is-size-5 has-text-centered"></h1>
+					<h1 x-text="section.replace(/([a-z])([A-Z])/g, `$1 $2`)" class="is-size-5 has-text-centered"></h1>
 					<template x-for="field in fields[section]">
 						<div class="field">
-							<label x-text="field" class="label"></label>
+							<label x-text="field.name" class="label"></label>
 							<div class="control">
-								<input class="input" type="text" :placeholder="field">
+								<input class="input" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
+									:value="field.value" :required="field.required ? true : false">
 							</div>
 						</div>
 					</template>
 				</section>
 			</template>
+			<div class="field is-grouped is-justify-content-center my-5">
+				<div class="control has-text-centered">
+					<button type="submit" class="button is-rounded is-info">
+						<span class="icon is-big">
+							<span class="material-icons">picture_as_pdf</span>
+						</span>
+						<span>Generate PDF</span>
+					</button>
+				</div>
+				<div class="control has-text-centered">
+					<button type="reset" class="button is-rounded is-danger">
+						<span class="icon is-big">
+							<span class="material-icons">restart_alt</span>
+						</span>
+						<span>Reset Form</span>
+					</button>
+				</div>
+			</div>
 		</form>
 		<!-- Forms -->
 
 		<!-- Action Buttons -->
-		<section class="field is-grouped is-justify-content-center my-5">
+		<section class="field is-grouped is-justify-content-center my-5 is-hidden">
 			<div class="control">
 				<button class="button is-rounded is-primary">
 					<span class="icon is-small">
