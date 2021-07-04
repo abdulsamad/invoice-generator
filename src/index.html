@@ -30,18 +30,21 @@
 </head>
 
 <body>
-	<nav class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
+	<!-- Navigation -->
+
+	<nav x-data="{ open: false }" class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
-			<a class="navbar-item" href="index.html">
+			<a class="navbar-item" href="/index.html">
 				Invoice Generator
 			</a>
-			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+			<button x-on:click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
+				aria-label="menu" aria-expanded="false">
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
-			</a>
+			</button>
 		</div>
-		<div id="navbar" class="navbar-menu">
+		<div :class="{ 'is-active' : open , '' : !open}" class="navbar-menu">
 			<div class="navbar-end">
 				<a class="navbar-item" href="/index.html">
 					Home
@@ -49,13 +52,42 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container py-5">
-		<div class="field">
-			<label class="label">Name</label>
+	<!-- Navigation -->
+
+	<!-- Form -->
+	<div class="container p-5">
+		<section x-data="$store.invoiceData">
+			<template x-for="field in fields">
+				<div class="field">
+					<label x-text="field" class="label"></label>
+					<div class="control">
+						<input class="input" type="text" placeholder="Text input">
+					</div>
+				</div>
+			</template>
+		</section>
+		<!-- Form -->
+
+		<!-- Action Buttons -->
+		<div class="field is-grouped is-justify-content-center my-5">
 			<div class="control">
-				<input class="input" type="text" placeholder="Text input">
+				<button class="button is-rounded is-primary">
+					<span class="icon is-small">
+						<i class="material-icons">print</i>
+					</span>
+					<span>Print</span>
+				</button>
+			</div>
+			<div class="control">
+				<button class="button is-link is-rounded">
+					<span class="icon is-small">
+						<i class="material-icons">file_download</i>
+					</span>
+					<span>Download</span>
+				</button>
 			</div>
 		</div>
+		<!-- Action Buttons -->
 	</div>
 </body>
 
