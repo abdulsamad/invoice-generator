@@ -3,7 +3,7 @@ interface Ifield {
   type?: string; // Input type
   placeholder?: string; // Input placeholder
   required?: boolean; // Input required
-  value?: string | string[]; // Input value
+  value?: string | string[]; // Input value or select options
 }
 
 interface IDetails {
