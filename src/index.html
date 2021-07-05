@@ -156,23 +156,25 @@
 		<!-- Form -->
 
 		<!-- Action Buttons -->
-		<section x-data x-show="$store.actions.visible" class="field is-grouped is-justify-content-center my-5"
-			x-transition>
-			<div class="control">
-				<button class="button is-rounded is-primary">
-					<span class="icon is-small">
-						<i class="material-icons">print</i>
-					</span>
-					<span>Print</span>
-				</button>
-			</div>
-			<div class="control">
-				<button class="button is-link is-rounded">
-					<span class="icon is-small">
-						<i class="material-icons">file_download</i>
-					</span>
-					<span>Download</span>
-				</button>
+		<section x-data x-show="$store.actions.visible" class="box my-5" x-transition>
+			<h2 class="is-size-4 has-text-centered mb-4">Actions</h2>
+			<div class="field is-grouped is-justify-content-center">
+				<div class="control">
+					<button class="button is-rounded is-primary">
+						<span class="icon is-small">
+							<i class="material-icons">print</i>
+						</span>
+						<span>Print</span>
+					</button>
+				</div>
+				<div class="control">
+					<button class="button is-link is-rounded">
+						<span class="icon is-small">
+							<i class="material-icons">file_download</i>
+						</span>
+						<span>Download</span>
+					</button>
+				</div>
 			</div>
 		</section>
 		<!-- Action Buttons -->
