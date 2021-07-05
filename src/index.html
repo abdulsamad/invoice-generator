@@ -102,7 +102,8 @@
 							<!-- If field type is select -->
 							<template x-if="field.type === 'select'">
 								<div>
-									<label x-text="field.name" class="label" :for="field.name"></label>
+									<label x-html="field.required ? `${field.name}<span class='has-text-danger'>*</span>` : field.name"
+										class="label" :for="field.name"></label>
 									<div class="control">
 										<div class="select is-fullwidth">
 											<select :id="field.name">
@@ -119,7 +120,8 @@
 							<!-- If field type is not select -->
 							<template x-if="field.type !== 'select'">
 								<div>
-									<label x-text="field.name" :for="field.name" class="label"></label>
+									<label x-html="field.required ? `${field.name}<span class='has-text-danger'>*</span>` : field.name"
+										:for="field.name" class="label"></label>
 									<div class="control">
 										<input :id="field.name" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
 											:value="field.value" :required="field.required ? true : false" class="input">
