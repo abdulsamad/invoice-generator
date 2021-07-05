@@ -37,7 +37,7 @@
 				<a class="navbar-item is-size-4" href="/index.html">
 					Invoice Generator
 				</a>
-				<button x-on:click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
+				<button @click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
 					aria-label="menu" aria-expanded="false">
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
@@ -60,7 +60,7 @@
 
 	<div class="container px-5">
 		<!-- Form -->
-		<form x-on:submit.prevent="(data) => console.log(data)" x-data="$store.invoiceData" class="my-5">
+		<form @submit.prevent="(data) => console.log(data)" x-data="$store.invoiceData" class="my-5">
 			<!-- Top Section -->
 			<section class="my-4">
 				<div class="field">
@@ -73,8 +73,8 @@
 					<label class="label">Invoice Number</label>
 					<div class="control">
 						<input x-init="$el.value = localStorage.getItem('invoiceNumber') || 0"
-							x-on:change="$store.customMethods.updateInvoiceNumber"
-							x-on:keyup="$store.customMethods.updateInvoiceNumber" type="number" class="input">
+							@change="$store.customMethods.updateInvoiceNumber" @keyup="$store.customMethods.updateInvoiceNumber"
+							type="number" class="input">
 					</div>
 				</div>
 			</section>
@@ -122,7 +122,7 @@
 			<!-- Submit and Reset -->
 			<div class="field is-grouped is-justify-content-center my-5">
 				<div class="control has-text-centered">
-					<button x-on:click="$store.customMethods.generatePDF" type="submit" class="button is-rounded is-info">
+					<button @click="$store.customMethods.generatePDF" type="submit" class="button is-rounded is-info">
 						<span class="icon is-big">
 							<span class="material-icons">picture_as_pdf</span>
 						</span>
