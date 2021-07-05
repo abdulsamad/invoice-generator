@@ -63,10 +63,22 @@
 		<form @submit.prevent="$store.actions.toggleActions()" x-data="$store.invoiceData" class="my-5">
 			<!-- Top Section -->
 			<section class="my-4">
-				<div class="field">
-					<label class="label">Date</label>
-					<div class="control">
-						<input x-init="$el.value = new Date().toISOString().substr(0, 10)" type="date" class="input">
+				<div class="columns is-mobile">
+					<div class="column">
+						<div class="field">
+							<label class="label">Date</label>
+							<div class="control">
+								<input x-init="$el.valueAsDate = new Date()" type="date" class="input">
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="field">
+							<label class="label">Time</label>
+							<div class="control">
+								<input x-init="$el.value = new Date().toLocaleString().slice(-8, -3)" type="time" class="input">
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="field">
