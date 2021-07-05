@@ -15,14 +15,6 @@ document.addEventListener('alpine:init', () => {
       this.visible = true;
     },
   });
-
-  // Custom methods store
-  Alpine.store('customMethods', {
-    updateInvoiceNumber(ev: Event) {
-      const elem = ev.target as HTMLInputElement;
-      localStorage.setItem('invoiceNumber', elem.value);
-    },
-  });
 });
 
 // Start Alpine

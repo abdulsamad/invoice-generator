@@ -85,8 +85,8 @@
 					<label class="label">Invoice Number</label>
 					<div class="control">
 						<input x-init="$el.value = localStorage.getItem('invoiceNumber') || 0"
-							@change="$store.customMethods.updateInvoiceNumber" @keyup="$store.customMethods.updateInvoiceNumber"
-							type="number" class="input">
+							@change="localStorage.setItem('invoiceNumber', $el.value)"
+							@keyup="localStorage.setItem('invoiceNumber', $el.value)" type="number" class="input">
 					</div>
 				</div>
 			</section>
