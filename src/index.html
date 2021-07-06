@@ -163,7 +163,7 @@
 			<h2 class="is-size-4 has-text-centered mb-4">Actions</h2>
 			<div class="field is-grouped is-justify-content-center">
 				<div class="control">
-					<button class="button is-rounded is-primary">
+					<button @click="$store.customMethods.generatePDF" class="button is-rounded is-primary" id="print">
 						<span class="icon is-small">
 							<i class="material-icons">print</i>
 						</span>
@@ -171,7 +171,7 @@
 					</button>
 				</div>
 				<div class="control">
-					<button class="button is-link is-rounded">
+					<button @click="$store.customMethods.generatePDF" class="button is-link is-rounded" id="download">
 						<span class="icon is-small">
 							<i class="material-icons">file_download</i>
 						</span>
