@@ -28,6 +28,11 @@ const details: IDetails = {
         required: true,
       },
       {
+        name: 'Model',
+        placeholder: 'Enter vehicle model',
+        required: true,
+      },
+      {
         name: 'Chassis Number',
         placeholder: 'Enter vehicle chassis number',
         required: true,
