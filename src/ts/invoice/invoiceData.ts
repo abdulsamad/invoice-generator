@@ -20,32 +20,39 @@ const details: IDetails = {
       {
         name: 'Name',
         placeholder: 'Enter vehicle name',
+        required: true,
       },
       {
         name: 'Registration Number',
         placeholder: 'Enter vehicle registration number',
+        required: true,
       },
       {
         name: 'Chassis Number',
         placeholder: 'Enter vehicle chassis number',
+        required: true,
       },
       {
         name: 'Engine Number',
         placeholder: 'Enter vehicle engine number',
+        required: true,
       },
       {
         name: 'Color',
         placeholder: 'Enter vehicle color',
+        required: true,
       },
     ],
     CustomerDetails: [
       {
         name: 'Name',
         placeholder: 'Enter customer name',
+        required: true,
       },
       {
         name: 'Address',
         placeholder: 'Enter customer address',
+        required: true,
       },
       {
         name: 'Insurance Number',
@@ -55,6 +62,7 @@ const details: IDetails = {
         name: 'Contact Number',
         type: 'number',
         placeholder: 'Enter customer contact number',
+        required: true,
       },
     ],
     PaymentDetails: [
@@ -69,25 +77,21 @@ const details: IDetails = {
         name: 'Vehicle Amount',
         type: 'number',
         placeholder: 'Enter vehicle amount',
-        required: true,
       },
       {
         name: 'Down Payment',
         type: 'number',
         placeholder: 'Enter downpayment amount',
-        required: true,
       },
       {
         name: 'Transfer Amount',
         type: 'number',
         placeholder: 'Enter transfer amount',
-        required: true,
       },
       {
         name: 'Total Amount',
         type: 'number',
         placeholder: 'Enter total amount',
-        required: true,
       },
     ],
   },
