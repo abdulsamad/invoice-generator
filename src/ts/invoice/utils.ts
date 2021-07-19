@@ -100,3 +100,10 @@ export const convertTime24To12 = (timeStr: string) => {
 
   return timeStr;
 };
+
+export const convertNumberToCurrency = (locale: string, currency: string, number: number) => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency,
+  }).format(number);
+};

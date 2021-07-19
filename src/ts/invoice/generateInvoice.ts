@@ -13,6 +13,7 @@ import {
   addTime,
   addInvoiceNumber,
   convertTime24To12,
+  convertNumberToCurrency,
 } from './utils';
 import PTSans from '../fonts/PTSans';
 import PTSansBold from '../fonts/PTSans-Bold';
@@ -100,22 +101,34 @@ const generateInvoice = (target: string, formDataObj: any) => {
       );
       addField(
         doc,
-        { name: 'Vehicle Amount', value: formDataObj['Vehicle Amount'] },
+        {
+          name: 'Vehicle Amount',
+          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Vehicle Amount']),
+        },
         (sectionsStartNumber += 7.5),
       );
       addField(
         doc,
-        { name: 'Down Payment', value: formDataObj['Down Payment'] },
+        {
+          name: 'Down Payment',
+          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Down Payment']),
+        },
         (sectionsStartNumber += 7.5),
       );
       addField(
         doc,
-        { name: 'Transfer Amount', value: formDataObj['Transfer Amount'] },
+        {
+          name: 'Transfer Amount',
+          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Transfer Amount']),
+        },
         (sectionsStartNumber += 7.5),
       );
       addField(
         doc,
-        { name: 'Total Amount', value: formDataObj['Total Amount'] },
+        {
+          name: 'Total Amount',
+          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Total Amount']),
+        },
         (sectionsStartNumber += 7.5),
       );
 
@@ -128,7 +141,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
 
       doc.text('Purchaser Signature', X_Y_MARGIN, 260);
       doc.line(X_Y_MARGIN, 275, 50, 275);
-      doc.text('Zip Drive Signature', DOC_WIDTH / 1.29, 260);
+      doc.text(`${process.env.COMPANY_NAME} Signature`, DOC_WIDTH / 1.29, 260);
       doc.line(DOC_WIDTH / 1.3, 275, DOC_WIDTH - X_Y_MARGIN, 275);
 
       // Print
