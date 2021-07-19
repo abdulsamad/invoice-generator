@@ -62,7 +62,8 @@
 
 	<div class="container px-5">
 		<!-- Form -->
-		<form @submit.prevent="$store.actions.toggleActions()" x-data="$store.invoiceData" class="my-5">
+		<form @submit.prevent="(ev) => ( $store.customMethods.onSubmit(ev), $store.actions.toggleActions());"
+			x-data="$store.invoiceData" class="my-5">
 			<!-- Top Section -->
 			<section class="my-4">
 				<div class="columns is-mobile">
@@ -70,7 +71,7 @@
 						<div class="field">
 							<label class="label">Date</label>
 							<div class="control">
-								<input x-init="$el.valueAsDate = new Date()" type="date" class="input">
+								<input x-init="$el.valueAsDate = new Date()" type="date" name="Date" class="input">
 							</div>
 						</div>
 					</div>
@@ -78,7 +79,8 @@
 						<div class="field">
 							<label class="label">Time</label>
 							<div class="control">
-								<input x-init="$el.value = new Date().toLocaleString().slice(-8, -3)" type="time" class="input">
+								<input x-init="$el.value = new Date().toLocaleString().slice(-8, -3)" name="Time" type="time"
+									class="input">
 							</div>
 						</div>
 					</div>
@@ -88,7 +90,8 @@
 					<div class="control">
 						<input x-init="$el.value = localStorage.getItem('invoiceNumber') || 0"
 							@change="localStorage.setItem('invoiceNumber', $el.value)"
-							@keyup="localStorage.setItem('invoiceNumber', $el.value)" type="number" class="input">
+							@keyup="localStorage.setItem('invoiceNumber', $el.value)" type="number" name="Invoice Number"
+							class="input">
 					</div>
 				</div>
 			</section>
@@ -107,7 +110,7 @@
 										class="label" :for="field.name"></label>
 									<div class="control">
 										<div class="select is-fullwidth">
-											<select :id="field.name">
+											<select :id="field.name" :name="field.name">
 												<!-- Loop over select options (Loop 3) -->
 												<template x-for="option in field.value">
 													<option x-text="option" :value="option"></option>
@@ -125,7 +128,7 @@
 										:for="field.name" class="label"></label>
 									<div class="control">
 										<input :id="field.name" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
-											:value="field.value" :required="field.required ? true : false" class="input">
+											:value="field.value" :required="field.required ? true : false" :name="field.name" class="input">
 									</div>
 								</div>
 							</template>
@@ -162,7 +165,7 @@
 		<section x-data x-show="$store.actions.visible" class="box my-5" x-transition>
 			<h2 class="is-size-4 has-text-centered mb-4">Actions</h2>
 			<div class="field is-grouped is-justify-content-center">
-				<div class="control">
+				<div class="control is-hidden-mobile">
 					<button @click="$store.customMethods.generatePDF" class="button is-rounded is-primary" id="print">
 						<span class="icon is-small">
 							<i class="material-icons">print</i>

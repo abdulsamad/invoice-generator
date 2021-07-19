@@ -5,6 +5,8 @@ import generateInvoice from './generateInvoice';
 
 // Alpine Store (Global State)
 document.addEventListener('alpine:init', () => {
+  let formDataObj: any = {};
+
   // Form fields store
   Alpine.store('invoiceData', invoiceData);
 
@@ -13,34 +15,29 @@ document.addEventListener('alpine:init', () => {
     visible: false,
 
     toggleActions() {
-      this.visible = false;
+      this.visible = true;
     },
   });
 
   // Custom methods store
   Alpine.store('customMethods', {
-    formDataObj: {},
     onSubmit(ev: Event) {
       const target = ev.target as HTMLFormElement;
       const formData = new FormData(target);
 
-      let formDataObj: any = {};
-
       for (const key of formData.keys()) {
         formDataObj[key] = formData.get(key);
       }
-
-      generateInvoice('print', formDataObj);
     },
     generatePDF(ev: Event) {
       const elem = ev.currentTarget as HTMLButtonElement;
       elem.classList.add('is-loading');
 
       elem.id === 'print'
-        ? generateInvoice(elem.id, this.formDataObj).then(() => {
+        ? generateInvoice(elem.id, formDataObj).then(() => {
             elem.classList.remove('is-loading');
           })
-        : generateInvoice(elem.id, this.formDataObj).then(() => {
+        : generateInvoice(elem.id, formDataObj).then(() => {
             elem.classList.remove('is-loading');
           });
     },
