@@ -71,7 +71,9 @@
 						<div class="field">
 							<label class="label">Date</label>
 							<div class="control">
-								<input x-init="$el.valueAsDate = new Date()" type="date" name="Date" class="input">
+								<input
+									x-init="$el.value = `${new Date().getFullYear()}-${('0' + (new Date().getMonth() + 1)).slice(-2)}-${('0' + new Date().getDate()).slice(-2)}`"
+									type="date" name="Date" class="input">
 							</div>
 						</div>
 					</div>
