@@ -30,7 +30,6 @@ document.addEventListener('alpine:init', () => {
         formDataObj[key] = formData.get(key);
       }
 
-      console.log(formDataObj);
       generateInvoice('print', formDataObj);
     },
     generatePDF(ev: Event) {

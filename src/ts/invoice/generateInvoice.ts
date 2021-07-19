@@ -12,6 +12,7 @@ import {
   addDate,
   addTime,
   addInvoiceNumber,
+  convertTime24To12,
 } from './utils';
 import PTSans from '../fonts/PTSans';
 import PTSansBold from '../fonts/PTSans-Bold';
@@ -48,29 +49,75 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addLine(doc, 35.5, 35.5);
 
       /* Body */
-      addDate(doc, formDataObj['Date'], 44);
-      addTime(doc, formDataObj['Time'], 44);
-      addInvoiceNumber(doc, formDataObj['Invoice Number'], 50);
+      addDate(doc, formDataObj['Date'], 48);
+      addTime(doc, convertTime24To12(formDataObj['Time']), 48);
+      addInvoiceNumber(doc, formDataObj['Invoice Number'], 54);
 
-      addHeading(doc, 'Vehicle Details', 60);
-      addField(doc, { name: 'Registration Number', value: formDataObj['Registration Number'] }, 67);
-      addField(doc, { name: 'Model', value: formDataObj['Model'] }, 73);
-      addField(doc, { name: 'Chassis Number', value: formDataObj['Chassis Number'] }, 79);
-      addField(doc, { name: 'Engine Number', value: formDataObj['Engine Number'] }, 86);
-      addField(doc, { name: 'Color', value: formDataObj['Color'] }, 92);
+      let sectionsStartNumber = 67;
 
-      addHeading(doc, 'Customer Details', 100);
-      addField(doc, { name: 'Name', value: formDataObj['Name'] }, 106);
-      addField(doc, { name: 'Address', value: formDataObj['Address'] }, 112);
-      addField(doc, { name: 'Insurance Number', value: formDataObj['Insurance Number'] }, 118);
-      addField(doc, { name: 'Contact Number', value: formDataObj['Contact Number'] }, 124);
+      addHeading(doc, 'Vehicle Details', sectionsStartNumber);
+      addField(
+        doc,
+        { name: 'Registration Number', value: formDataObj['Registration Number'] },
+        (sectionsStartNumber += 10),
+      );
+      addField(doc, { name: 'Model', value: formDataObj['Model'] }, (sectionsStartNumber += 7.5));
+      addField(
+        doc,
+        { name: 'Chassis Number', value: formDataObj['Chassis Number'] },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(
+        doc,
+        { name: 'Engine Number', value: formDataObj['Engine Number'] },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(doc, { name: 'Color', value: formDataObj['Color'] }, (sectionsStartNumber += 7.5));
 
-      addHeading(doc, 'Payment Details', 132);
-      addField(doc, { name: 'Mode of Payment', value: formDataObj['Mode of Payment'] }, 138);
-      addField(doc, { name: 'Vehicle Amount', value: formDataObj['Vehicle Amount'] }, 144);
-      addField(doc, { name: 'Down Payment', value: formDataObj['Down Payment'] }, 150);
-      addField(doc, { name: 'Transfer Amount', value: formDataObj['Transfer Amount'] }, 156);
-      addField(doc, { name: 'Total Amount', value: formDataObj['Total Amount'] }, 162);
+      addHeading(doc, 'Customer Details', (sectionsStartNumber += 14));
+      addField(doc, { name: 'Name', value: formDataObj['Name'] }, (sectionsStartNumber += 10));
+      addField(
+        doc,
+        { name: 'Address', value: formDataObj['Address'] },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(
+        doc,
+        { name: 'Insurance Number', value: formDataObj['Insurance Number'] },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(
+        doc,
+        { name: 'Contact Number', value: formDataObj['Contact Number'] },
+        (sectionsStartNumber += 7.5),
+      );
+
+      addHeading(doc, 'Payment Details', (sectionsStartNumber += 14));
+      addField(
+        doc,
+        { name: 'Mode of Payment', value: formDataObj['Mode of Payment'] },
+        (sectionsStartNumber += 10),
+      );
+      addField(
+        doc,
+        { name: 'Vehicle Amount', value: formDataObj['Vehicle Amount'] },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(
+        doc,
+        { name: 'Down Payment', value: formDataObj['Down Payment'] },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(
+        doc,
+        { name: 'Transfer Amount', value: formDataObj['Transfer Amount'] },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(
+        doc,
+        { name: 'Total Amount', value: formDataObj['Total Amount'] },
+        (sectionsStartNumber += 7.5),
+      );
 
       doc.text(
         'I have this day taken delivery of scooter, Motorcycle, Car bearing for my personal Conveyance only. The Said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay al types of traffic offences, police Legal iting accident and R.T.O. Municipal (Including Octrol) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle',
