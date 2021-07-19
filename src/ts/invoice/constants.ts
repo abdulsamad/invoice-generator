@@ -11,4 +11,4 @@ export const DOC_HEIGHT = 297;
 export const X_Y_MARGIN = 10;
 export const LINE_MAX_WIDTH = DOC_WIDTH - X_Y_MARGIN * 2;
 export const FONT_SIZE = 12; // 12pt
-export const FONT_FAMILY = 'PTSans';
+export const FONT_FAMILY = 'Roboto';

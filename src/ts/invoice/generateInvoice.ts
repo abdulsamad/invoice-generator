@@ -15,8 +15,8 @@ import {
   convertTime24To12,
   convertNumberToCurrency,
 } from './utils';
-import PTSans from '../fonts/PTSans';
-import PTSansBold from '../fonts/PTSans-Bold';
+import Roboto from '../fonts/Roboto';
+import RobotoBold from '../fonts/Roboto-Bold';
 
 /*  
   Default Page Values
@@ -31,13 +31,13 @@ const generateInvoice = (target: string, formDataObj: any) => {
       const invoiceNumber = localStorage.getItem('invoiceNumber') || '0';
       const doc = new jsPDF();
 
-      doc.addFileToVFS('PTSans.ttf', PTSans);
-      doc.addFont('PTSans.ttf', 'PTSans', 'normal');
-      doc.addFileToVFS('PTSans.ttf', PTSansBold);
-      doc.addFont('PTSans.ttf', 'PTSans', 'bold');
+      doc.addFileToVFS('Roboto.ttf', Roboto);
+      doc.addFont('Roboto.ttf', 'Roboto', 'normal');
+      doc.addFileToVFS('Roboto.ttf', RobotoBold);
+      doc.addFont('Roboto.ttf', 'Roboto', 'bold');
 
       /* Head */
-      addCompanyLogo(doc, process.env.COMPANY_NAME as string);
+      addCompanyLogo(doc, process.env.COMPANY_NAME?.toUpperCase() as string);
       addCompanyTagline(doc, process.env.COMPANY_TAGLINE as string);
       addCompanyAddress(doc, process.env.COMPANY_ADDRESS as string);
       addCompanyContact(
@@ -52,7 +52,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       /* Body */
       addDate(doc, formDataObj['Date'], 48);
       addTime(doc, convertTime24To12(formDataObj['Time']), 48);
-      addInvoiceNumber(doc, formDataObj['Invoice Number'], 54);
+      addInvoiceNumber(doc, invoiceNumber, 55);
 
       let sectionsStartNumber = 69;
 
