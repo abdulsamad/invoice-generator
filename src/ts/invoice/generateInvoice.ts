@@ -31,8 +31,8 @@ const generateInvoice = (target: string, formDataObj: any) => {
 
       doc.addFileToVFS('PTSans.ttf', PTSans);
       doc.addFont('PTSans.ttf', 'PTSans', 'normal');
-      doc.addFileToVFS('PTSans-bold.ttf', PTSans);
-      doc.addFont('PTSans-bold.ttf', 'PTSans', 'bold');
+      doc.addFileToVFS('PTSans.ttf', PTSansBold);
+      doc.addFont('PTSans.ttf', 'PTSans', 'bold');
 
       /* Head */
       addCompanyLogo(doc, process.env.COMPANY_NAME as string);
