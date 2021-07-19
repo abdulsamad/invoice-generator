@@ -17,6 +17,7 @@ import {
 } from './utils';
 import Roboto from '../fonts/Roboto';
 import RobotoBold from '../fonts/Roboto-Bold';
+import RobotoItalic from '../fonts/Roboto-Italic';
 
 /*  
   Default Page Values
@@ -35,6 +36,8 @@ const generateInvoice = (target: string, formDataObj: any) => {
       doc.addFont('Roboto.ttf', 'Roboto', 'normal');
       doc.addFileToVFS('Roboto.ttf', RobotoBold);
       doc.addFont('Roboto.ttf', 'Roboto', 'bold');
+      doc.addFileToVFS('Roboto.ttf', RobotoItalic);
+      doc.addFont('Roboto.ttf', 'Roboto', 'italic');
 
       /* Head */
       addCompanyLogo(doc, process.env.COMPANY_NAME?.toUpperCase() as string);
