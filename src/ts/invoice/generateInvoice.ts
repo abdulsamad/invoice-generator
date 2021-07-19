@@ -50,6 +50,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addLine(doc, 35.5, 35.5);
 
       /* Body */
+      console.log(formDataObj['Date']);
       addDate(doc, formDataObj['Date'], 48);
       addTime(doc, convertTime24To12(formDataObj['Time']), 48);
       addInvoiceNumber(doc, invoiceNumber, 55);
@@ -81,6 +82,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
         doc,
         { name: 'Address', value: formDataObj['Address'] },
         (sectionsStartNumber += 7.5),
+        { maxWidth: DOC_WIDTH - X_Y_MARGIN * 2 },
       );
       addField(
         doc,
