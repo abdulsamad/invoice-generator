@@ -66,7 +66,7 @@ export const addDate = (doc: jsPDF, text: string, yPos: number) => {
   doc.text(`Date: ${text}`, X_Y_MARGIN, yPos);
 };
 
-export const addInvoiceNumber = (doc: jsPDF, text: string, yPos: number) => {
+export const addInvoiceNumber = (doc: jsPDF, text: number, yPos: number) => {
   doc.text(`Invoice Number: ${text}`, X_Y_MARGIN, yPos);
 };
 

@@ -28,9 +28,10 @@ import RobotoItalic from '../fonts/Roboto-Italic';
 */
 
 const generateInvoice = (target: string, formDataObj: any) => {
+  const invoiceNumber = Number(localStorage.getItem('invoiceNumber')) || 0;
+
   return new Promise((resolve, reject) => {
     try {
-      const invoiceNumber = localStorage.getItem('invoiceNumber') || '0';
       const doc = new jsPDF();
 
       doc.addFileToVFS('Roboto.ttf', Roboto);
@@ -162,6 +163,8 @@ const generateInvoice = (target: string, formDataObj: any) => {
       resolve('success');
     } catch (err) {
       reject(err);
+    } finally {
+      localStorage.setItem('invoiceNumber', (invoiceNumber + 1).toString());
     }
   });
 };
