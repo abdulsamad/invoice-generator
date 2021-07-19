@@ -45,13 +45,13 @@ export const addCompanyContact = (doc: jsPDF, contactName: string, contacts: str
   const contactsObj = JSON.parse(contacts);
   let topMargin = 8;
 
-  doc.setFontSize(FONT_SIZE * 0.8);
+  doc.setFontSize(FONT_SIZE * 0.9);
   doc.setFont(FONT_FAMILY, 'normal', 400);
-  doc.text(contactName, DOC_WIDTH / 1.28, topMargin);
+  doc.text(contactName, DOC_WIDTH / 1.3, topMargin);
 
   for (let key in contactsObj) {
     doc.setFont(FONT_FAMILY, 'italic', 400);
-    doc.text(`${key}: ${contactsObj[key]}`, DOC_WIDTH / 1.28, (topMargin += 5));
+    doc.text(`${key}: ${contactsObj[key]}`, DOC_WIDTH / 1.3, (topMargin += 5));
   }
 
   // Reset Fonts
