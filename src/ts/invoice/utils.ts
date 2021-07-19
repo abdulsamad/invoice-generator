@@ -90,3 +90,13 @@ export const addField = (
 ) => {
   doc.text(`${name}: ${value}`, X_Y_MARGIN, yPos, { maxWidth: LINE_MAX_WIDTH });
 };
+
+export const convertTime24To12 = (timeStr: string) => {
+  const hourEnd = timeStr.indexOf(':');
+  const H = +timeStr.substr(0, hourEnd);
+  const h = H % 12 || 12;
+  const ampm = H < 12 || H === 24 ? ' AM' : ' PM';
+  timeStr = h + timeStr.substr(hourEnd, 3) + ampm;
+
+  return timeStr;
+};
