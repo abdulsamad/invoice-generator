@@ -120,7 +120,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       );
 
       doc.text(
-        'I have this day taken delivery of scooter, Motorcycle, Car bearing for my personal Conveyance only. The Said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay al types of traffic offences, police Legal iting accident and R.T.O. Municipal (Including Octrol) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle',
+        'I have this day taken delivery of Scooter, Motorcycle, Car bearing for my personal conveyance only. The said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay all types of traffic offenses, police Legal citing accidents, and R.T.O. Municipal (Including Octroi) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle.',
         X_Y_MARGIN,
         230,
         { maxWidth: DOC_WIDTH - X_Y_MARGIN * 2 },
