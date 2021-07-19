@@ -75,14 +75,14 @@ const generateInvoice = (target: string, formDataObj: any) => {
       doc.text(
         'I have this day taken delivery of scooter, Motorcycle, Car bearing for my personal Conveyance only. The Said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay al types of traffic offences, police Legal iting accident and R.T.O. Municipal (Including Octrol) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle',
         X_Y_MARGIN,
-        200,
+        230,
         { maxWidth: DOC_WIDTH - X_Y_MARGIN * 2 },
       );
 
-      doc.text('Purchaser', X_Y_MARGIN, 240);
-      doc.line(X_Y_MARGIN, 250, 50, 250);
-      doc.text('Zip Drive', DOC_WIDTH / 1.2, 240);
-      doc.line(DOC_WIDTH / 1.3, 250, DOC_WIDTH - X_Y_MARGIN, 250);
+      doc.text('Purchaser Signature', X_Y_MARGIN, 260);
+      doc.line(X_Y_MARGIN, 275, 50, 275);
+      doc.text('Zip Drive Signature', DOC_WIDTH / 1.29, 260);
+      doc.line(DOC_WIDTH / 1.3, 275, DOC_WIDTH - X_Y_MARGIN, 275);
 
       // Print
       if (target === 'print') {
