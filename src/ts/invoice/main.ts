@@ -10,24 +10,38 @@ document.addEventListener('alpine:init', () => {
 
   // Toggle action buttons store
   Alpine.store('actions', {
-    visible: true,
+    visible: false,
 
     toggleActions() {
-      this.visible = true;
+      this.visible = false;
     },
   });
 
   // Custom methods store
   Alpine.store('customMethods', {
+    formDataObj: {},
+    onSubmit(ev: Event) {
+      const target = ev.target as HTMLFormElement;
+      const formData = new FormData(target);
+
+      let formDataObj: any = {};
+
+      for (const key of formData.keys()) {
+        formDataObj[key] = formData.get(key);
+      }
+
+      console.log(formDataObj);
+      generateInvoice('print', formDataObj);
+    },
     generatePDF(ev: Event) {
       const elem = ev.currentTarget as HTMLButtonElement;
       elem.classList.add('is-loading');
 
       elem.id === 'print'
-        ? generateInvoice(elem.id).then(() => {
+        ? generateInvoice(elem.id, this.formDataObj).then(() => {
             elem.classList.remove('is-loading');
           })
-        : generateInvoice(elem.id).then(() => {
+        : generateInvoice(elem.id, this.formDataObj).then(() => {
             elem.classList.remove('is-loading');
           });
     },

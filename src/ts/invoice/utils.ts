@@ -16,8 +16,8 @@ export const resetDocFonts = (doc: jsPDF) => {
 
 export const addCompanyLogo = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE * 2);
-  doc.setFont(FONT_FAMILY, 'normal', 700);
-  doc.text(text as string, DOC_WIDTH / 2.2, 8, { align: 'center' });
+  doc.setFont('times', 'normal', 700);
+  doc.text(text as string, DOC_WIDTH / 2.2, 11, { align: 'center' });
 
   // Reset Fonts
   resetDocFonts(doc);
@@ -26,7 +26,7 @@ export const addCompanyLogo = (doc: jsPDF, text: string) => {
 export const addCompanyTagline = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE * 1.2);
   doc.setFont(FONT_FAMILY, 'normal', 700);
-  doc.text(text, DOC_WIDTH / 2.2, 13, { align: 'center' });
+  doc.text(text, DOC_WIDTH / 2.2, 18, { align: 'center' });
 
   // Reset Fonts
   resetDocFonts(doc);
@@ -35,7 +35,7 @@ export const addCompanyTagline = (doc: jsPDF, text: string) => {
 export const addCompanyAddress = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE);
   doc.setFont(FONT_FAMILY, 'normal', 400);
-  doc.text(text, DOC_WIDTH / 2.2, 18, { align: 'center' });
+  doc.text(text, DOC_WIDTH / 2.2, 24, { align: 'center' });
 
   // Reset Fonts
   resetDocFonts(doc);
@@ -43,26 +43,50 @@ export const addCompanyAddress = (doc: jsPDF, text: string) => {
 
 export const addCompanyContact = (doc: jsPDF, contactName: string, contacts: string) => {
   const contactsObj = JSON.parse(contacts);
-  let topMargin = 7;
+  let topMargin = 8;
 
-  doc.setFontSize(FONT_SIZE);
+  doc.setFontSize(FONT_SIZE * 0.8);
   doc.setFont(FONT_FAMILY, 'normal', 400);
-  doc.text(contactName, DOC_WIDTH / 1.3, 7);
+  doc.text(contactName, DOC_WIDTH / 1.28, topMargin);
 
   for (let key in contactsObj) {
-    console.log(key);
     doc.setFont(FONT_FAMILY, 'italic', 400);
-    doc.text(`${key}: ${contactsObj[key]}`, DOC_WIDTH / 1.3, (topMargin += 4));
+    doc.text(`${key}: ${contactsObj[key]}`, DOC_WIDTH / 1.28, (topMargin += 5));
   }
 
   // Reset Fonts
   resetDocFonts(doc);
 };
 
-export const addHeading = (doc: jsPDF, text: string, yPos: number) => {
-  doc.text(text, X_Y_MARGIN, yPos, { align: 'center', maxWidth: LINE_MAX_WIDTH });
+export const addLine = (doc: jsPDF, y1Pos: number, y2Pos: number) => {
+  doc.line(X_Y_MARGIN, y1Pos, DOC_WIDTH - X_Y_MARGIN, y2Pos);
 };
 
-export const addField = (doc: jsPDF, text: string, yPos: number) => {
-  doc.text(text, X_Y_MARGIN, yPos, { align: 'center', maxWidth: LINE_MAX_WIDTH });
+export const addDate = (doc: jsPDF, text: string, yPos: number) => {
+  doc.text(`Date: ${text}`, X_Y_MARGIN, yPos);
+};
+
+export const addInvoiceNumber = (doc: jsPDF, text: string, yPos: number) => {
+  doc.text(`Invoice Number: ${text}`, X_Y_MARGIN, yPos);
+};
+
+export const addTime = (doc: jsPDF, text: string, yPos: number) => {
+  doc.text(`Time: ${text}`, DOC_WIDTH / 1.22, yPos);
+};
+
+export const addHeading = (doc: jsPDF, text: string, yPos: number) => {
+  doc.setFontSize(FONT_SIZE * 1.2);
+  doc.setFont(FONT_FAMILY, 'normal', 700);
+  doc.text(text, X_Y_MARGIN, yPos);
+
+  // Reset Fonts
+  resetDocFonts(doc);
+};
+
+export const addField = (
+  doc: jsPDF,
+  { name, value }: { name: string; value: string },
+  yPos: number,
+) => {
+  doc.text(`${name}: ${value}`, X_Y_MARGIN, yPos, { maxWidth: LINE_MAX_WIDTH });
 };
