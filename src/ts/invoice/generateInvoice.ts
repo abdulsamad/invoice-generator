@@ -53,7 +53,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addTime(doc, convertTime24To12(formDataObj['Time']), 48);
       addInvoiceNumber(doc, formDataObj['Invoice Number'], 54);
 
-      let sectionsStartNumber = 67;
+      let sectionsStartNumber = 69;
 
       addHeading(doc, 'Vehicle Details', sectionsStartNumber);
       addField(
@@ -120,9 +120,9 @@ const generateInvoice = (target: string, formDataObj: any) => {
       );
 
       doc.text(
-        'I have this day taken delivery of Scooter, Motorcycle, Car bearing for my personal conveyance only. The said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay all types of traffic offenses, police Legal citing accidents, and R.T.O. Municipal (Including Octroi) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle.',
+        'I have this day taken delivery of Scooter, Motorcycle, Car bearing for my personal conveyance only. The said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay all types of traffic offenses, police Legal citing accidents, and R.T.O. Municipal (including Octroi) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle.',
         X_Y_MARGIN,
-        230,
+        225,
         { maxWidth: DOC_WIDTH - X_Y_MARGIN * 2 },
       );
 
