@@ -14,6 +14,7 @@ import {
   addInvoiceNumber,
   convertTime24To12,
   convertNumberToCurrency,
+  convertDateFromYYMMDDtoDDMMYY,
 } from './utils';
 import Roboto from '../fonts/Roboto';
 import RobotoBold from '../fonts/Roboto-Bold';
@@ -53,8 +54,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addLine(doc, 35.5, 35.5);
 
       /* Body */
-      console.log(formDataObj['Date']);
-      addDate(doc, formDataObj['Date'], 48);
+      addDate(doc, convertDateFromYYMMDDtoDDMMYY(formDataObj['Date']), 48);
       addTime(doc, convertTime24To12(formDataObj['Time']), 48);
       addInvoiceNumber(doc, invoiceNumber, 55);
 

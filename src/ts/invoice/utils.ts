@@ -108,3 +108,8 @@ export const convertNumberToCurrency = (locale: string, currency: string, number
     currency,
   }).format(number);
 };
+
+export const convertDateFromYYMMDDtoDDMMYY = (date: string) => {
+  let dArr = date.split('-');
+  return dArr[2] + '/' + dArr[1] + '/' + dArr[0];
+};
