@@ -26,7 +26,7 @@ document.addEventListener('alpine:init', () => {
       const formData = new FormData(target);
       const actions = document.querySelector('#actions') as HTMLElement;
 
-      setTimeout(() => actions.scrollIntoView(), 800);
+      setTimeout(() => actions.scrollIntoView(), 100);
 
       for (const key of formData.keys()) {
         formDataObj[key] = formData.get(key);
