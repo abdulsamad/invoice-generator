@@ -5,8 +5,6 @@ import generateInvoice from './generateInvoice';
 
 // Alpine Store (Global State)
 document.addEventListener('alpine:init', () => {
-  let formDataObj: any = {};
-
   // Form fields store
   Alpine.store('invoiceData', invoiceData);
 
@@ -20,6 +18,8 @@ document.addEventListener('alpine:init', () => {
   });
 
   // Custom methods store
+  let formDataObj: any = {};
+
   Alpine.store('customMethods', {
     onSubmit(ev: Event) {
       const target = ev.target as HTMLFormElement;
