@@ -133,6 +133,14 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addField(
         doc,
         {
+          name: 'Tax Amount',
+          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Total Amount']),
+        },
+        (sectionsStartNumber += 7.5),
+      );
+      addField(
+        doc,
+        {
           name: 'Total Amount',
           value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Total Amount']),
         },
@@ -142,14 +150,14 @@ const generateInvoice = (target: string, formDataObj: any) => {
       doc.text(
         'I have this day taken delivery of Scooter, Motorcycle, Car bearing for my personal conveyance only. The said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay all types of traffic offenses, police Legal citing accidents, and R.T.O. Municipal (including Octroi) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle.',
         X_Y_MARGIN,
-        225,
+        238,
         { maxWidth: DOC_WIDTH - X_Y_MARGIN * 2 },
       );
 
-      doc.text('Purchaser Signature', X_Y_MARGIN, 260);
-      doc.line(X_Y_MARGIN, 275, 50, 275);
-      doc.text(`${process.env.COMPANY_NAME} Signature`, DOC_WIDTH / 1.29, 260);
-      doc.line(DOC_WIDTH / 1.3, 275, DOC_WIDTH - X_Y_MARGIN, 275);
+      doc.text('Purchaser Signature', X_Y_MARGIN, 270);
+      doc.line(X_Y_MARGIN, 280, 50, 280);
+      doc.text(`${process.env.COMPANY_NAME} Signature`, DOC_WIDTH / 1.29, 270);
+      doc.line(DOC_WIDTH / 1.3, 280, DOC_WIDTH - X_Y_MARGIN, 280);
 
       // Print
       if (target === 'print') {
