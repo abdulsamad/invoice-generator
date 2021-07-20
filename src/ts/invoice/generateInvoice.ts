@@ -62,10 +62,11 @@ const generateInvoice = (target: string, formDataObj: any) => {
       let sectionsStartNumber = 69;
 
       addHeading(doc, 'Vehicle Details', sectionsStartNumber);
+      addField(doc, { name: 'Brand', value: formDataObj['Brand'] }, (sectionsStartNumber += 10));
       addField(
         doc,
         { name: 'Registration Number', value: formDataObj['Registration Number'] },
-        (sectionsStartNumber += 10),
+        (sectionsStartNumber += 7.5),
       );
       addField(doc, { name: 'Model', value: formDataObj['Model'] }, (sectionsStartNumber += 7.5));
       addField(

@@ -18,8 +18,8 @@ const details: IDetails = {
   fields: {
     VehicleDetails: [
       {
-        name: 'Name',
-        placeholder: 'Enter vehicle name',
+        name: 'Brand',
+        placeholder: 'Enter vehicle brand name',
         required: true,
       },
       {
