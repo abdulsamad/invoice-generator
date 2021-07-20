@@ -103,7 +103,7 @@ const details: IDetails = {
         placeholder: 'Enter transfer amount',
       },
       {
-        name: 'Tax',
+        name: 'Tax Amount',
         type: 'number',
         placeholder: 'Enter tax amount',
       },
