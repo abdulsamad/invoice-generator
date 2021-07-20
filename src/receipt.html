@@ -29,15 +29,16 @@
 	<script src="ts/receipt/main.ts" defer></script>
 </head>
 
-<body>
+<body class="has-navbar-fixed-top">
 	<!-- Navigation -->
-	<nav x-data="{ open: false }" class="navbar is-primary has-shadow" role="navigation" aria-label="main navigation">
+	<nav x-data="{ open: false }" class="navbar is-primary has-shadow is-fixed-top" role="navigation"
+		aria-label="main navigation">
 		<div class="container">
 			<div class="navbar-brand">
 				<a class="navbar-item is-size-4" href="/index.html">
-					Receipt Generator
+					Invoice Generator
 				</a>
-				<button x-on:click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
+				<button @click="open = ! open" :class="{ 'is-active' : open , '' : !open}" class="navbar-burger"
 					aria-label="menu" aria-expanded="false">
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
@@ -58,26 +59,129 @@
 	</nav>
 	<!-- Navigation -->
 
-
 	<div class="container px-5">
-		<h1 class="is-size-2 has-text-centered my-5">Receipt Generator is coming soon! 🥳</h1>
-		<!-- Action Buttons -->
-		<section class="field is-grouped is-justify-content-center my-5 is-hidden">
-			<div class="control">
-				<button class="button is-rounded is-primary">
-					<span class="icon is-small">
-						<i class="material-icons">print</i>
-					</span>
-					<span>Print</span>
-				</button>
+		<!-- Form -->
+		<form @submit.prevent="(ev) => ( $store.customMethods.onSubmit(ev), $store.actions.toggleActions());"
+			x-data="$store.invoiceData" class="my-5">
+			<!-- Top Section -->
+			<section class="my-4">
+				<div class="columns is-mobile">
+					<div class="column">
+						<div class="field">
+							<label class="label">Date</label>
+							<div class="control">
+								<input
+									x-init="$el.value = `${new Date().getFullYear()}-${('0' + (new Date().getMonth() + 1)).slice(-2)}-${('0' + new Date().getDate()).slice(-2)}`"
+									type="date" name="Date" class="input">
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="field">
+							<label class="label">Time</label>
+							<div class="control">
+								<input x-init="$el.value = new Date().toLocaleString().slice(-8, -3)" name="Time" type="time"
+									class="input">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Sr No</label>
+					<div class="control">
+						<input x-init="$el.value = localStorage.getItem('receiptNumber') || 0"
+							@change="localStorage.setItem('receiptNumber', $el.value)"
+							@keyup="localStorage.setItem('receiptNumber', $el.value)" type="number" name="Receipt Number"
+							class="input">
+					</div>
+				</div>
+			</section>
+			<!-- Top Section -->
+			<!-- Field Sections (Loop 1) -->
+			<template x-for="section in Object.keys(fields)">
+				<section class="my-4">
+					<h1 x-text="section.replace(/([a-z])([A-Z])/g, `$1 $2`)" class="is-size-5 has-text-centered mb-3"></h1>
+					<!-- Fields (Loop 2) -->
+					<template x-for="field in fields[section]">
+						<div class="field">
+							<!-- If field type is select -->
+							<template x-if="field.type === 'select'">
+								<div>
+									<label x-html="field.required ? `${field.name}<span class='has-text-danger'>*</span>` : field.name"
+										class="label" :for="field.name"></label>
+									<div class="control">
+										<div class="select is-fullwidth">
+											<select :id="field.name" :name="field.name">
+												<!-- Loop over select options (Loop 3) -->
+												<template x-for="option in field.value">
+													<option x-text="option" :value="option"></option>
+												</template>
+												<!-- Loop over select options (Loop 3) -->
+											</select>
+										</div>
+									</div>
+								</div>
+							</template>
+							<!-- If field type is not select -->
+							<template x-if="field.type !== 'select'">
+								<div>
+									<label x-html="field.required ? `${field.name}<span class='has-text-danger'>*</span>` : field.name"
+										:for="field.name" class="label"></label>
+									<div class="control">
+										<input :id="field.name" :type="field.type ? field.type : 'text'" :placeholder="field.placeholder"
+											:value="field.value" :required="field.required ? true : false" :name="field.name" class="input">
+									</div>
+								</div>
+							</template>
+						</div>
+					</template>
+					<!-- Fields (Loop 2) -->
+				</section>
+			</template>
+			<!-- Field Sections -->
+			<!-- Submit and Reset -->
+			<div class="field is-grouped is-justify-content-center my-5">
+				<div class="control has-text-centered">
+					<button type="submit" class="button is-rounded is-info">
+						<span class="icon is-big">
+							<span class="material-icons">picture_as_pdf</span>
+						</span>
+						<span>Submit</span>
+					</button>
+				</div>
+				<div class="control has-text-centered">
+					<button type="reset" class="button is-rounded is-danger">
+						<span class="icon is-big">
+							<span class="material-icons">restart_alt</span>
+						</span>
+						<span>Reset Form</span>
+					</button>
+				</div>
 			</div>
-			<div class="control">
-				<button class="button is-link is-rounded">
-					<span class="icon is-small">
-						<i class="material-icons">file_download</i>
-					</span>
-					<span>Download</span>
-				</button>
+			<!-- Submit and Reset -->
+		</form>
+		<!-- Form -->
+
+		<!-- Action Buttons -->
+		<section x-data x-show="$store.actions.visible" class="box my-5" x-transition>
+			<h2 class="is-size-4 has-text-centered mb-4">Actions</h2>
+			<div class="field is-grouped is-justify-content-center">
+				<div class="control is-hidden-mobile">
+					<button @click="$store.customMethods.generatePDF" class="button is-rounded is-primary" id="print">
+						<span class="icon is-small">
+							<i class="material-icons">print</i>
+						</span>
+						<span>Print</span>
+					</button>
+				</div>
+				<div class="control">
+					<button @click="$store.customMethods.generatePDF" class="button is-link is-rounded" id="download">
+						<span class="icon is-small">
+							<i class="material-icons">file_download</i>
+						</span>
+						<span>Download</span>
+					</button>
+				</div>
 			</div>
 		</section>
 		<!-- Action Buttons -->
