@@ -152,7 +152,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
 
       // Print
       if (target === 'print') {
-        // doc.autoPrint();
+        doc.autoPrint();
         doc.output('dataurlnewwindow');
         resolve('success');
         return;
