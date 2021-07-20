@@ -76,7 +76,16 @@ const details: IDetails = {
         type: 'select',
         placeholder: 'Enter mode of payment',
         required: true,
-        value: ['Cash', 'Cheque', 'Bank Transfer', 'Loan', 'E-Wallet', 'Credit Card', 'Debit Card'],
+        value: [
+          'Cash',
+          'Cheque',
+          'Bank Transfer',
+          'Loan',
+          'E-Wallet',
+          'Credit Card',
+          'Debit Card',
+          'Demand Draft',
+        ],
       },
       {
         name: 'Vehicle Amount',
