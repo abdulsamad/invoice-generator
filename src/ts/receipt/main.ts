@@ -24,6 +24,9 @@ document.addEventListener('alpine:init', () => {
     onSubmit(ev: Event) {
       const target = ev.target as HTMLFormElement;
       const formData = new FormData(target);
+      const actions = document.querySelector('#actions') as HTMLElement;
+
+      setTimeout(() => actions.scrollIntoView(), 800);
 
       for (const key of formData.keys()) {
         formDataObj[key] = formData.get(key);
@@ -33,13 +36,15 @@ document.addEventListener('alpine:init', () => {
       const elem = ev.currentTarget as HTMLButtonElement;
       elem.classList.add('is-loading');
 
-      elem.id === 'print'
-        ? generateReceipt(elem.id, formDataObj).then(() => {
-            elem.classList.remove('is-loading');
-          })
-        : generateReceipt(elem.id, formDataObj).then(() => {
-            elem.classList.remove('is-loading');
-          });
+      setTimeout(() => {
+        elem.id === 'print'
+          ? generateReceipt(elem.id, formDataObj).then(() => {
+              elem.classList.remove('is-loading');
+            })
+          : generateReceipt(elem.id, formDataObj).then(() => {
+              elem.classList.remove('is-loading');
+            });
+      }, 800);
     },
   });
 });
