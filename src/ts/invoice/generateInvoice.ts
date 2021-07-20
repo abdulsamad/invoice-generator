@@ -147,7 +147,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
         (sectionsStartNumber += 7.5),
       );
 
-      doc.text(process.env.COMPANY_DISCLAIMER as string, X_Y_MARGIN, 238, {
+      doc.text(process.env.COMPANY_INVOICE_DISCLAIMER as string, X_Y_MARGIN, 238, {
         maxWidth: DOC_WIDTH - X_Y_MARGIN * 2,
       });
 
