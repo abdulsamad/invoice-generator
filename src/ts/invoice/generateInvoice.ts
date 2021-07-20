@@ -147,12 +147,9 @@ const generateInvoice = (target: string, formDataObj: any) => {
         (sectionsStartNumber += 7.5),
       );
 
-      doc.text(
-        'I have this day taken delivery of Scooter, Motorcycle, Car bearing for my personal conveyance only. The said vehicle has been duly approved by me and found to my entire satisfaction. I am from today onwards, responsible to pay all types of traffic offenses, police Legal citing accidents, and R.T.O. Municipal (including Octroi) Wheel taxes and premium of Insurance including the pillion rider of the said vehicle.',
-        X_Y_MARGIN,
-        238,
-        { maxWidth: DOC_WIDTH - X_Y_MARGIN * 2 },
-      );
+      doc.text(process.env.COMPANY_DISCLAIMER as string, X_Y_MARGIN, 238, {
+        maxWidth: DOC_WIDTH - X_Y_MARGIN * 2,
+      });
 
       doc.text('Purchaser Signature', X_Y_MARGIN, 270);
       doc.line(X_Y_MARGIN, 280, 50, 280);
