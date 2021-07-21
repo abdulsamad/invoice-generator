@@ -17,7 +17,7 @@ export const resetDocFonts = (doc: jsPDF) => {
 export const addCompanyLogo = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE * 2);
   doc.setFont('times', 'normal', 700);
-  doc.text(text as string, DOC_WIDTH / 2.2, 11, { align: 'center' });
+  doc.text(text, DOC_WIDTH / 2.2, 11, { align: 'center' });
 
   // Reset Fonts
   resetDocFonts(doc);
