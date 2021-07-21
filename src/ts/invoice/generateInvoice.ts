@@ -59,92 +59,105 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addTime(doc, convertTime24To12(formDataObj['Time']), 48);
       addInvoiceNumber(doc, invoiceNumber, 55);
 
+      // Variables
+      const step = 7.5;
+      const headingStep = 10;
+      const locale = process.env.COMPANY_LOCALE as string;
+      const currency = process.env.COMPANY_CURRENCY as string;
       let sectionsStartNumber = 69;
 
       addHeading(doc, 'Vehicle Details', sectionsStartNumber);
-      addField(doc, { name: 'Brand', value: formDataObj['Brand'] }, (sectionsStartNumber += 10));
+      addField(
+        doc,
+        { name: 'Brand', value: formDataObj['Brand'] },
+        (sectionsStartNumber += headingStep),
+      );
       addField(
         doc,
         { name: 'Registration Number', value: formDataObj['Registration Number'] },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
-      addField(doc, { name: 'Model', value: formDataObj['Model'] }, (sectionsStartNumber += 7.5));
+      addField(doc, { name: 'Model', value: formDataObj['Model'] }, (sectionsStartNumber += step));
       addField(
         doc,
         { name: 'Chassis Number', value: formDataObj['Chassis Number'] },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
       addField(
         doc,
         { name: 'Engine Number', value: formDataObj['Engine Number'] },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
-      addField(doc, { name: 'Color', value: formDataObj['Color'] }, (sectionsStartNumber += 7.5));
+      addField(doc, { name: 'Color', value: formDataObj['Color'] }, (sectionsStartNumber += step));
 
       addHeading(doc, 'Customer Details', (sectionsStartNumber += 14));
-      addField(doc, { name: 'Name', value: formDataObj['Name'] }, (sectionsStartNumber += 10));
+      addField(
+        doc,
+        { name: 'Name', value: formDataObj['Name'] },
+        (sectionsStartNumber += headingStep),
+      );
       addField(
         doc,
         { name: 'Address', value: formDataObj['Address'] },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
         { maxWidth: DOC_WIDTH - X_Y_MARGIN * 2 },
       );
       addField(
         doc,
         { name: 'Insurance Number', value: formDataObj['Insurance Number'] },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
       addField(
         doc,
         { name: 'Contact Number', value: formDataObj['Contact Number'] },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
 
       addHeading(doc, 'Payment Details', (sectionsStartNumber += 14));
       addField(
         doc,
         { name: 'Mode of Payment', value: formDataObj['Mode of Payment'] },
-        (sectionsStartNumber += 10),
+        (sectionsStartNumber += headingStep),
       );
       addField(
         doc,
         {
           name: 'Vehicle Amount',
-          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Vehicle Amount']),
+          value: convertNumberToCurrency(locale, currency, formDataObj['Vehicle Amount']),
         },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
       addField(
         doc,
         {
           name: 'Down Payment',
-          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Down Payment']),
+          value: convertNumberToCurrency(locale, currency, formDataObj['Down Payment']),
         },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
       addField(
         doc,
         {
           name: 'Transfer Amount',
-          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Transfer Amount']),
+          value: convertNumberToCurrency(locale, currency, formDataObj['Transfer Amount']),
         },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
       addField(
         doc,
         {
           name: 'Tax Amount',
-          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Total Amount']),
+          value: convertNumberToCurrency(locale, currency, formDataObj['Total Amount']),
         },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
       addField(
         doc,
         {
           name: 'Total Amount',
-          value: convertNumberToCurrency('en-IN', 'INR', formDataObj['Total Amount']),
+          value: convertNumberToCurrency(locale, currency, formDataObj['Total Amount']),
         },
-        (sectionsStartNumber += 7.5),
+        (sectionsStartNumber += step),
       );
 
       doc.text(process.env.COMPANY_INVOICE_DISCLAIMER as string, X_Y_MARGIN, 238, {
