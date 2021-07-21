@@ -61,7 +61,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
 
       addDate(doc, convertDateFromYYMMDDtoDDMMYY(formDataObj['Date']), 36);
       addHeading(doc, 'Receipt', 36);
-      addReceiptNumber(doc, 0, 36);
+      addReceiptNumber(doc, receiptNumber, 36);
 
       addField(
         doc,
@@ -159,14 +159,14 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addField(doc, { name: 'Seller', value: '' }, 98, { maxWidth: LINE_MAX_WIDTH }, 31);
       // Print
       if (target === 'print') {
-        // doc.autoPrint();
+        doc.autoPrint();
         doc.output('dataurlnewwindow');
         resolve('success');
         return;
       }
 
       // Download
-      doc.save(`Invoice_${receiptNumber}_(${new Date().toLocaleDateString()}).pdf`);
+      doc.save(`Receipt_${receiptNumber}_(${new Date().toLocaleDateString()}).pdf`);
       resolve('success');
     } catch (err) {
       reject(err);
