@@ -17,7 +17,6 @@ import {
   addCompanyTagline,
   addCompanyAddress,
   addCompanyContact,
-  addLine,
   addField,
   addDate,
   addTime,
@@ -52,13 +51,12 @@ const generateInvoice = (target: string, formDataObj: any) => {
       doc.addFont('Roboto.ttf', 'Roboto', 'italic');
 
       /* Head */
-      addCompanyLogo(doc, COMPANY_NAME?.toUpperCase());
-      addCompanyTagline(doc, COMPANY_TAGLINE);
+      doc.rect(25, 10, 160, 100);
+      addCompanyLogo(doc, COMPANY_NAME);
+      doc.line(30, 24, DOC_WIDTH - 30, 24);
       addCompanyAddress(doc, COMPANY_ADDRESS);
+      doc.line(30, 31, DOC_WIDTH - 30, 31);
       addCompanyContact(doc, COMPANY_CONTACT_NAME, COMPANY_CONTACTS);
-      addLine(doc, 29, 29);
-      doc.text('INVOICE', DOC_WIDTH / 2, 33.7, { align: 'center' });
-      addLine(doc, 35.5, 35.5);
 
       // Print
       if (target === 'print') {

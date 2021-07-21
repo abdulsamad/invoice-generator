@@ -17,7 +17,7 @@ export const resetDocFonts = (doc: jsPDF) => {
 export const addCompanyLogo = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE * 2);
   doc.setFont('times', 'normal', 700);
-  doc.text(text, DOC_WIDTH / 2.2, 11, { align: 'center' });
+  doc.text(text, DOC_WIDTH / 2, 20, { align: 'center' });
 
   // Reset Fonts
   resetDocFonts(doc);
@@ -35,7 +35,7 @@ export const addCompanyTagline = (doc: jsPDF, text: string) => {
 export const addCompanyAddress = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE);
   doc.setFont(FONT_FAMILY, 'normal', 400);
-  doc.text(text, DOC_WIDTH / 2.2, 24, { align: 'center' });
+  doc.text(text, DOC_WIDTH / 2, 29, { align: 'center' });
 
   // Reset Fonts
   resetDocFonts(doc);
@@ -43,23 +43,19 @@ export const addCompanyAddress = (doc: jsPDF, text: string) => {
 
 export const addCompanyContact = (doc: jsPDF, contactName: string, contacts: string) => {
   const contactsObj = JSON.parse(contacts);
-  let topMargin = 8;
+  let topMargin = 14;
 
-  doc.setFontSize(FONT_SIZE * 0.9);
+  doc.setFontSize(FONT_SIZE * 0.7);
   doc.setFont(FONT_FAMILY, 'normal', 400);
-  doc.text(contactName, DOC_WIDTH / 1.3, topMargin);
+  doc.text(contactName, DOC_WIDTH / 1.39, topMargin);
 
   for (let key in contactsObj) {
     doc.setFont(FONT_FAMILY, 'italic', 400);
-    doc.text(`${key}: ${contactsObj[key]}`, DOC_WIDTH / 1.3, (topMargin += 5));
+    doc.text(`${key}: ${contactsObj[key]}`, DOC_WIDTH / 1.39, (topMargin += 4));
   }
 
   // Reset Fonts
   resetDocFonts(doc);
-};
-
-export const addLine = (doc: jsPDF, y1Pos: number, y2Pos: number) => {
-  doc.line(X_Y_MARGIN, y1Pos, DOC_WIDTH - X_Y_MARGIN, y2Pos);
 };
 
 export const addDate = (doc: jsPDF, text: string, yPos: number) => {
