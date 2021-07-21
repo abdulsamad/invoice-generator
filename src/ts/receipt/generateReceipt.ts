@@ -144,11 +144,11 @@ const generateInvoice = (target: string, formDataObj: any) => {
         },
         140,
       );
-      addField(doc, { name: 'Bank Name', value: formDataObj['Bank Name'] }, 87);
+      addField(doc, { name: 'Bank Name', value: formDataObj['Bank Name'] }, 88);
       addField(
         doc,
         { name: 'Cheque No', value: formDataObj['Cheque No.'] },
-        87,
+        88,
         {
           maxWidth: LINE_MAX_WIDTH,
         },
