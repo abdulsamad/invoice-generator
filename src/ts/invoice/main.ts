@@ -44,7 +44,7 @@ document.addEventListener('alpine:init', () => {
           : generateInvoice(elem.id, formDataObj).then(() => {
               elem.classList.remove('is-loading');
             });
-      }, 800);
+      }, 500);
     },
   });
 });
