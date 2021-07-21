@@ -1,6 +1,17 @@
 import { jsPDF } from 'jspdf';
 
-import { X_Y_MARGIN, DOC_WIDTH } from './constants';
+import {
+  X_Y_MARGIN,
+  DOC_WIDTH,
+  COMPANY_NAME,
+  COMPANY_ADDRESS,
+  COMPANY_CONTACTS,
+  COMPANY_CONTACT_NAME,
+  COMPANY_CURRENCY,
+  COMPANY_INVOICE_DISCLAIMER,
+  COMPANY_LOCALE,
+  COMPANY_TAGLINE,
+} from './constants';
 import {
   addCompanyLogo,
   addCompanyTagline,
@@ -42,14 +53,10 @@ const generateInvoice = (target: string, formDataObj: any) => {
       doc.addFont('Roboto.ttf', 'Roboto', 'italic');
 
       /* Head */
-      addCompanyLogo(doc, process.env.COMPANY_NAME?.toUpperCase() as string);
-      addCompanyTagline(doc, process.env.COMPANY_TAGLINE as string);
-      addCompanyAddress(doc, process.env.COMPANY_ADDRESS as string);
-      addCompanyContact(
-        doc,
-        process.env.COMPANY_CONTACT_NAME as string,
-        process.env.COMPANY_CONTACTS as string,
-      );
+      addCompanyLogo(doc, COMPANY_NAME?.toUpperCase());
+      addCompanyTagline(doc, COMPANY_TAGLINE);
+      addCompanyAddress(doc, COMPANY_ADDRESS);
+      addCompanyContact(doc, COMPANY_CONTACT_NAME, COMPANY_CONTACTS);
       addLine(doc, 29, 29);
       doc.text('INVOICE', DOC_WIDTH / 2, 33.7, { align: 'center' });
       addLine(doc, 35.5, 35.5);
@@ -60,17 +67,15 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addInvoiceNumber(doc, invoiceNumber, 55);
 
       // Variables
-      const step = 7.5;
-      const headingStep = 10;
-      const locale = process.env.COMPANY_LOCALE as string;
-      const currency = process.env.COMPANY_CURRENCY as string;
       let sectionsStartNumber = 69;
+      const step = 7.5;
+      const BigStep = 10;
 
       addHeading(doc, 'Vehicle Details', sectionsStartNumber);
       addField(
         doc,
         { name: 'Brand', value: formDataObj['Brand'] },
-        (sectionsStartNumber += headingStep),
+        (sectionsStartNumber += BigStep),
       );
       addField(
         doc,
@@ -91,11 +96,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addField(doc, { name: 'Color', value: formDataObj['Color'] }, (sectionsStartNumber += step));
 
       addHeading(doc, 'Customer Details', (sectionsStartNumber += 14));
-      addField(
-        doc,
-        { name: 'Name', value: formDataObj['Name'] },
-        (sectionsStartNumber += headingStep),
-      );
+      addField(doc, { name: 'Name', value: formDataObj['Name'] }, (sectionsStartNumber += BigStep));
       addField(
         doc,
         { name: 'Address', value: formDataObj['Address'] },
@@ -117,13 +118,17 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addField(
         doc,
         { name: 'Mode of Payment', value: formDataObj['Mode of Payment'] },
-        (sectionsStartNumber += headingStep),
+        (sectionsStartNumber += BigStep),
       );
       addField(
         doc,
         {
           name: 'Vehicle Amount',
-          value: convertNumberToCurrency(locale, currency, formDataObj['Vehicle Amount']),
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Vehicle Amount'],
+          ),
         },
         (sectionsStartNumber += step),
       );
@@ -131,7 +136,11 @@ const generateInvoice = (target: string, formDataObj: any) => {
         doc,
         {
           name: 'Down Payment',
-          value: convertNumberToCurrency(locale, currency, formDataObj['Down Payment']),
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Down Payment'],
+          ),
         },
         (sectionsStartNumber += step),
       );
@@ -139,7 +148,11 @@ const generateInvoice = (target: string, formDataObj: any) => {
         doc,
         {
           name: 'Transfer Amount',
-          value: convertNumberToCurrency(locale, currency, formDataObj['Transfer Amount']),
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Transfer Amount'],
+          ),
         },
         (sectionsStartNumber += step),
       );
@@ -147,7 +160,11 @@ const generateInvoice = (target: string, formDataObj: any) => {
         doc,
         {
           name: 'Tax Amount',
-          value: convertNumberToCurrency(locale, currency, formDataObj['Total Amount']),
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Total Amount'],
+          ),
         },
         (sectionsStartNumber += step),
       );
@@ -155,18 +172,22 @@ const generateInvoice = (target: string, formDataObj: any) => {
         doc,
         {
           name: 'Total Amount',
-          value: convertNumberToCurrency(locale, currency, formDataObj['Total Amount']),
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Total Amount'],
+          ),
         },
         (sectionsStartNumber += step),
       );
 
-      doc.text(process.env.COMPANY_INVOICE_DISCLAIMER as string, X_Y_MARGIN, 238, {
+      doc.text(COMPANY_INVOICE_DISCLAIMER, X_Y_MARGIN, 238, {
         maxWidth: DOC_WIDTH - X_Y_MARGIN * 2,
       });
 
       doc.text('Purchaser Signature', X_Y_MARGIN, 270);
       doc.line(X_Y_MARGIN, 280, 50, 280);
-      doc.text(`${process.env.COMPANY_NAME} Signature`, DOC_WIDTH / 1.29, 270);
+      doc.text(`${COMPANY_NAME} Signature`, DOC_WIDTH / 1.29, 270);
       doc.line(DOC_WIDTH / 1.3, 280, DOC_WIDTH - X_Y_MARGIN, 280);
 
       // Print
