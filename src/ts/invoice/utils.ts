@@ -88,8 +88,9 @@ export const addField = (
   { name, value }: { name: string; value: string },
   yPos: number,
   options?: object,
+  xPos: number = X_Y_MARGIN,
 ) => {
-  doc.text(`${name}: ${value}`, X_Y_MARGIN, yPos, options ? options : { maxWidth: LINE_MAX_WIDTH });
+  doc.text(`${name}: ${value}`, xPos, yPos, options ? options : { maxWidth: LINE_MAX_WIDTH });
 };
 
 export const convertTime24To12 = (timeStr: string) => {

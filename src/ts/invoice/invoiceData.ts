@@ -112,6 +112,21 @@ const details: IDetails = {
         type: 'number',
         placeholder: 'Enter total amount',
       },
+      {
+        name: 'Loan Charges',
+        type: 'number',
+        placeholder: 'Enter loan charges (if any)',
+      },
+      {
+        name: 'Insurance Charges',
+        type: 'number',
+        placeholder: 'Enter insurance charges (if any)',
+      },
+      {
+        name: 'Other Charges',
+        type: 'number',
+        placeholder: 'Enter other charges (if any)',
+      },
     ],
   },
 };

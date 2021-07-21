@@ -3,6 +3,7 @@ import { jsPDF } from 'jspdf';
 import {
   X_Y_MARGIN,
   DOC_WIDTH,
+  LINE_MAX_WIDTH,
   COMPANY_NAME,
   COMPANY_ADDRESS,
   COMPANY_CONTACTS,
@@ -71,6 +72,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       const step = 7.5;
       const BigStep = 10;
 
+      // Vehicle Details
       addHeading(doc, 'Vehicle Details', sectionsStartNumber);
       addField(
         doc,
@@ -95,6 +97,7 @@ const generateInvoice = (target: string, formDataObj: any) => {
       );
       addField(doc, { name: 'Color', value: formDataObj['Color'] }, (sectionsStartNumber += step));
 
+      // Customer details
       addHeading(doc, 'Customer Details', (sectionsStartNumber += 14));
       addField(doc, { name: 'Name', value: formDataObj['Name'] }, (sectionsStartNumber += BigStep));
       addField(
@@ -114,6 +117,8 @@ const generateInvoice = (target: string, formDataObj: any) => {
         (sectionsStartNumber += step),
       );
 
+      // Payment details
+      // Col 1
       addHeading(doc, 'Payment Details', (sectionsStartNumber += 14));
       addField(
         doc,
@@ -147,23 +152,11 @@ const generateInvoice = (target: string, formDataObj: any) => {
       addField(
         doc,
         {
-          name: 'Transfer Amount',
-          value: convertNumberToCurrency(
-            COMPANY_LOCALE,
-            COMPANY_CURRENCY,
-            formDataObj['Transfer Amount'],
-          ),
-        },
-        (sectionsStartNumber += step),
-      );
-      addField(
-        doc,
-        {
           name: 'Tax Amount',
           value: convertNumberToCurrency(
             COMPANY_LOCALE,
             COMPANY_CURRENCY,
-            formDataObj['Total Amount'],
+            formDataObj['Tax Amount'],
           ),
         },
         (sectionsStartNumber += step),
@@ -179,6 +172,67 @@ const generateInvoice = (target: string, formDataObj: any) => {
           ),
         },
         (sectionsStartNumber += step),
+      );
+
+      // Col 2
+      let col2start = 187;
+      const col2Left = 100;
+
+      addField(
+        doc,
+        {
+          name: 'Transfer Amount',
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Transfer Amount'],
+          ),
+        },
+        col2start,
+        { maxWidth: LINE_MAX_WIDTH },
+        col2Left,
+      );
+      addField(
+        doc,
+        {
+          name: 'Loan Charges',
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Loan Charges'],
+          ),
+        },
+        (col2start += step),
+        { maxWidth: LINE_MAX_WIDTH },
+        col2Left,
+      );
+      addField(
+        doc,
+        {
+          name: 'Insurance Charges',
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Insurance Charges'],
+          ),
+        },
+        (col2start += step),
+        { maxWidth: LINE_MAX_WIDTH },
+        col2Left,
+      );
+      addField(
+        doc,
+        {
+          name: 'Other Charges',
+          value: convertNumberToCurrency(
+            COMPANY_LOCALE,
+            COMPANY_CURRENCY,
+            formDataObj['Other Charges'],
+          ),
+        },
+        (col2start += step),
+        { maxWidth: LINE_MAX_WIDTH },
+        col2Left,
       );
 
       doc.text(COMPANY_INVOICE_DISCLAIMER, X_Y_MARGIN, 238, {
