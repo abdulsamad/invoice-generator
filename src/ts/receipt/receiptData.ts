@@ -26,8 +26,8 @@ const details: IDetails = {
         required: true,
       },
       {
-        name: 'Vehicle described as',
-        placeholder: 'Enter vehicle full name',
+        name: 'Vehicle Name',
+        placeholder: 'Enter vehicle name',
         required: true,
       },
       {
@@ -41,7 +41,7 @@ const details: IDetails = {
         placeholder: 'Enter R.T.O number',
       },
       {
-        name: 'Vehicle No.',
+        name: 'Vehicle No',
         placeholder: 'Enter vehicle number',
       },
       {
@@ -59,7 +59,7 @@ const details: IDetails = {
         placeholder: 'Enter advance amount',
       },
       {
-        name: 'Balance',
+        name: 'Balance Amount',
         type: 'number',
         placeholder: 'Enter balance amount',
       },
