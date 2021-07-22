@@ -34,6 +34,7 @@ document.addEventListener('alpine:init', () => {
     },
     generatePDF(ev: Event) {
       const elem = ev.currentTarget as HTMLButtonElement;
+      const invoiceNumber = Number(localStorage.getItem('invoiceNumber')) || 0;
       elem.classList.add('is-loading');
 
       setTimeout(() => {

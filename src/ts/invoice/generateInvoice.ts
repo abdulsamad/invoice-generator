@@ -257,8 +257,6 @@ const generateInvoice = (target: string, formDataObj: any) => {
       resolve('success');
     } catch (err) {
       reject(err);
-    } finally {
-      localStorage.setItem('invoiceNumber', (invoiceNumber + 1).toString());
     }
   });
 };
