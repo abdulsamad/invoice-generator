@@ -1,5 +1,5 @@
 ## Invoice Generator
-An simple invoice generator created with Alpinejs
+A simple invoice generator created with Alpinejs
 
 ### Screenshot
 ![Invoice Generator screenshot](readme/Invoice-Generator.png "Invoice Generator screenshot")
