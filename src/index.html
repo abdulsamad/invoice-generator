@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<script src="./ts/invoice/main.ts" defer></script>
+	<script src="./ts/main.ts" defer></script>
 </head>
 
 <body class="has-navbar-fixed-top">
@@ -90,7 +91,7 @@
 				<div class="field">
 					<label class="label">Invoice Number</label>
 					<div class="control">
-						<input x-init="$el.value = localStorage.getItem('invoiceNumber') || 0"
+						<input x-init="$el.value = localStorage.getItem('invoiceNumber') || 1"
 							@change="localStorage.setItem('invoiceNumber', $el.value)"
 							@keyup="localStorage.setItem('invoiceNumber', $el.value)" type="number" name="Invoice Number"
 							class="input">

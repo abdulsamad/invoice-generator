@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<script src="ts/receipt/main.ts" defer></script>
+	<script src="./ts/main.ts" defer></script>
 </head>
 
 <body class="has-navbar-fixed-top">
@@ -89,7 +90,7 @@
 				<div class="field">
 					<label class="label">Sr No</label>
 					<div class="control">
-						<input x-init="$el.value = localStorage.getItem('receiptNumber') || 0"
+						<input x-init="$el.value = localStorage.getItem('receiptNumber') || 1"
 							@change="localStorage.setItem('receiptNumber', $el.value)"
 							@keyup="localStorage.setItem('receiptNumber', $el.value)" type="number" name="Receipt Number"
 							class="input">
