@@ -9,17 +9,22 @@
     "prestart": "rm -rf .cache",
     "start": "parcel src/index.html src/receipt.html -p 3000",
     "prebuild": "rm -rf dist",
-    "build": "parcel build src/index.html src/receipt.html --no-content-hash --no-source-maps --no-minify"
+    "build": "parcel build src/index.html src/receipt.html --no-content-hash --no-source-maps",
+    "postbuild": "workbox generateSW workbox-config.js"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
     "parcel-bundler": "^1.12.5",
     "sass": "^1.35.1",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "workbox-cli": "^6.3.0"
   },
   "dependencies": {
     "alpinejs": "^3.2.1",
     "bulma": "^0.9.3",
-    "jspdf": "^2.3.1"
+    "jspdf": "^2.3.1",
+    "workbox-precaching": "^6.3.0",
+    "workbox-routing": "^6.3.0",
+    "workbox-strategies": "^6.3.0"
   }
 }
