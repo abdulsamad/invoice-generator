@@ -44,7 +44,7 @@ export const addCompanyMobile = (
   doc.text(contactName, DOC_WIDTH / 1.39, topMargin);
 
   doc.setFont(FONT_FAMILY, "italic", 400);
-  doc.text(`Tel: ${contactMobile}`, DOC_WIDTH / 1.39, (topMargin += 4));
+  doc.text(`Tel: ${contactMobile}`, DOC_WIDTH / 1.39, (topMargin += 7));
 
   // Reset Fonts
   resetDocFonts(doc);
