@@ -1,4 +1,4 @@
-import { jsPDF } from 'jspdf';
+import { jsPDF } from "jspdf";
 
 import {
   DOC_HEIGHT,
@@ -7,17 +7,17 @@ import {
   FONT_FAMILY,
   FONT_SIZE,
   LINE_MAX_WIDTH,
-} from './constants';
+} from "./constants";
 
 export const resetDocFonts = (doc: jsPDF) => {
-  doc.setFont(FONT_FAMILY, 'normal', 400);
+  doc.setFont(FONT_FAMILY, "normal", 400);
   doc.setFontSize(FONT_SIZE);
 };
 
 export const addCompanyLogo = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE * 2);
-  doc.setFont('times', 'normal', 700);
-  doc.text(text, DOC_WIDTH / 2, 18, { align: 'center' });
+  doc.setFont("times", "normal", 700);
+  doc.text(text, DOC_WIDTH / 2, 18, { align: "center" });
 
   // Reset Fonts
   resetDocFonts(doc);
@@ -25,25 +25,26 @@ export const addCompanyLogo = (doc: jsPDF, text: string) => {
 
 export const addCompanyAddress = (doc: jsPDF, text: string) => {
   doc.setFontSize(FONT_SIZE);
-  doc.setFont(FONT_FAMILY, 'normal', 400);
-  doc.text(text, DOC_WIDTH / 2, 27, { align: 'center' });
+  doc.setFont(FONT_FAMILY, "normal", 400);
+  doc.text(text, DOC_WIDTH / 2, 27, { align: "center" });
 
   // Reset Fonts
   resetDocFonts(doc);
 };
 
-export const addCompanyContact = (doc: jsPDF, contactName: string, contacts: string) => {
-  const contactsObj = JSON.parse(contacts);
+export const addCompanyMobile = (
+  doc: jsPDF,
+  contactName: string,
+  contactMobile: string
+) => {
   let topMargin = 14;
 
   doc.setFontSize(FONT_SIZE * 0.7);
-  doc.setFont(FONT_FAMILY, 'normal', 400);
+  doc.setFont(FONT_FAMILY, "normal", 400);
   doc.text(contactName, DOC_WIDTH / 1.39, topMargin);
 
-  for (let key in contactsObj) {
-    doc.setFont(FONT_FAMILY, 'italic', 400);
-    doc.text(`${key}: ${contactsObj[key]}`, DOC_WIDTH / 1.39, (topMargin += 4));
-  }
+  doc.setFont(FONT_FAMILY, "italic", 400);
+  doc.text(`Tel: ${contactMobile}`, DOC_WIDTH / 1.39, (topMargin += 4));
 
   // Reset Fonts
   resetDocFonts(doc);
@@ -55,7 +56,7 @@ export const addDate = (doc: jsPDF, text: string, yPos: number) => {
 
 export const addHeading = (doc: jsPDF, text: string, yPos: number) => {
   doc.setFontSize(FONT_SIZE * 1.2);
-  doc.setFont(FONT_FAMILY, 'normal', 700);
+  doc.setFont(FONT_FAMILY, "normal", 700);
   doc.text(text, DOC_WIDTH / 2.1, yPos);
 
   // Reset Fonts
@@ -71,19 +72,28 @@ export const addField = (
   { name, value }: { name: string; value: string },
   yPos: number,
   options?: object,
-  xPos: number = 31,
+  xPos: number = 31
 ) => {
-  doc.text(`${name}: ${value}`, xPos, yPos, options ? options : { maxWidth: LINE_MAX_WIDTH });
+  doc.text(
+    `${name}: ${value}`,
+    xPos,
+    yPos,
+    options ? options : { maxWidth: LINE_MAX_WIDTH }
+  );
 };
 
-export const convertNumberToCurrency = (locale: string, currency: string, number: number) => {
+export const convertNumberToCurrency = (
+  locale: string,
+  currency: string,
+  number: number
+) => {
   return new Intl.NumberFormat(locale, {
-    style: 'currency',
+    style: "currency",
     currency,
   }).format(number);
 };
 
 export const convertDateFromYYMMDDtoDDMMYY = (date: string) => {
-  let dArr = date.split('-');
-  return dArr[2] + '/' + dArr[1] + '/' + dArr[0];
+  let dArr = date.split("-");
+  return dArr[2] + "/" + dArr[1] + "/" + dArr[0];
 };
